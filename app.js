@@ -134,6 +134,22 @@ const EVENTOS = [
    Las fotos solo se ven al dar clic en juntas que YA pasaron.
    =================================================== */
 const GALERIAS = {
+  "Junio-8": {
+    fotos: [
+      {
+        src: "assets/galerias/2026-06-08/imagen-01-junta-matrimonios.jpg",
+        caption: "Este Lunes tuvimos nuestra 1er junta de ÉL VIVE Matrimonios",
+      },
+      {
+        src: "assets/galerias/2026-06-08/imagen-02-junta-kids.jpg",
+        caption: "Este Lunes tuvimos nuestra 1er junta de ÉL VIVE Kids",
+      },
+      {
+        src: "assets/galerias/2026-06-08/imagen-03-junta-comunidad.jpg",
+        caption: "Este lunes nos compartió tema CODEPRO de la Arquidiócesis de Hermosillo",
+      },
+    ],
+  },
   "Junio-15": {
     fotos: [
       {
