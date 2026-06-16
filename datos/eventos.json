@@ -1,0 +1,404 @@
+[
+  {
+    "mes": "Junio",
+    "dia": 1,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Junio",
+    "dia": 8,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Junio",
+    "dia": 15,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Junio",
+    "dia": 20,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado"
+  },
+  {
+    "mes": "Junio",
+    "dia": 22,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Junio",
+    "dia": 29,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Julio",
+    "dia": 5,
+    "dow": "Dom",
+    "cat": "misa",
+    "titulo": "Misa mensual",
+    "hora": "5:00 p.m.",
+    "desc": "Sabado"
+  },
+  {
+    "mes": "Julio",
+    "dia": 6,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Julio",
+    "dia": 13,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Julio",
+    "dia": 18,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Julio",
+    "dia": 20,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Julio",
+    "dia": 27,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Agosto",
+    "dia": "3 – 16",
+    "dow": "Lun a Dom",
+    "cat": "especial",
+    "titulo": "Vacaciones",
+    "desc": "Del lunes 3 al domingo 16 de agosto.",
+    "rango": true
+  },
+  {
+    "mes": "Agosto",
+    "dia": 11,
+    "dow": "Mar",
+    "cat": "misa",
+    "titulo": "Misa por el 30.º Aniversario de la Comunidad ÉL VIVE"
+  },
+  {
+    "mes": "Agosto",
+    "dia": 17,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Agosto",
+    "dia": 22,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Agosto",
+    "dia": 24,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Agosto",
+    "dia": 29,
+    "dow": "Sáb",
+    "cat": "economica",
+    "titulo": "Actividad económica chica"
+  },
+  {
+    "mes": "Agosto",
+    "dia": 29,
+    "dow": "Sáb",
+    "cat": "misa",
+    "titulo": "Misa mensual",
+    "hora": "5:00 p.m."
+  },
+  {
+    "mes": "Agosto",
+    "dia": 31,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 5,
+    "dow": "Sáb",
+    "cat": "misa",
+    "titulo": "Misa de Niños",
+    "hora": "5:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 7,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 14,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 15,
+    "dow": "Mar",
+    "cat": "especial",
+    "titulo": "Kermés de la Parroquia La Resurrección"
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 19,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 21,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 26,
+    "dow": "Sáb",
+    "cat": "misa",
+    "titulo": "Misa mensual",
+    "hora": "5:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": 28,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 5,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 10,
+    "dow": "Sáb",
+    "cat": "especial",
+    "titulo": "Primera limpieza de rancho con Comunidad de Iniciación 1",
+    "desc": "Incluye un momento de convivencia, oración y encuentro en el rancho."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 12,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 17,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Octubre",
+    "dia": 19,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 24,
+    "dow": "Sáb",
+    "cat": "economica",
+    "titulo": "Actividad económica grande (Conferencias)"
+  },
+  {
+    "mes": "Octubre",
+    "dia": 24,
+    "dow": "Sáb",
+    "cat": "misa",
+    "titulo": "Misa mensual",
+    "hora": "5:00 p.m."
+  },
+  {
+    "mes": "Octubre",
+    "dia": 26,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 2,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 2,
+    "dow": "Lun",
+    "cat": "economica",
+    "titulo": "Entrega de boletos de la Mega Rifa"
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 7,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 9,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 14,
+    "dow": "Sáb",
+    "cat": "misa",
+    "titulo": "Misa mensual y convivencia con KIDS",
+    "hora": "5:00 p.m.",
+    "desc": "(O apostolado con KIDS, por definir.)"
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 16,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 23,
+    "dow": "Lun",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 28,
+    "dow": "Sáb",
+    "cat": "especial",
+    "titulo": "Limpieza de rancho"
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 30,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 5,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual"
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 7,
+    "dow": "Lun",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 8,
+    "dow": "Mar",
+    "cat": "economica",
+    "titulo": "Mega Rifa"
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 11,
+    "dow": "Vie",
+    "cat": "especial",
+    "titulo": "Peregrinación"
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 12,
+    "dow": "Sáb",
+    "cat": "especial",
+    "titulo": "Día de la Virgen, misa y Posada KIDS"
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 14,
+    "dow": "Lun",
+    "cat": "especial",
+    "titulo": "Posada durante la junta",
+    "desc": "Última junta del mes de diciembre."
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 17,
+    "dow": "Jue",
+    "cat": "especial",
+    "titulo": "Última Hora Santa del año"
+  }
+]

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendario ÉL VIVE · Junio – Diciembre 2026</title>
+  <meta name="description" content="Calendario de actividades del Movimiento Juvenil Católico ÉL VIVE. Junio a Diciembre 2026." />
+  <link rel="icon" type="image/jpeg" href="assets/favicon-el-vive.jpg" />
+
+  <!-- Tipografía Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header class="site-header">
+    <div class="header-inner">
+      <img class="logo" src="assets/logo-el-vive.png" alt="ÉL VIVE · Movimiento Juvenil Católico" />
+      <h1 class="header-title">Calendario de Actividades</h1>
+      <p class="header-sub">Junio &ndash; Diciembre 2026</p>
+      <div class="header-glow" aria-hidden="true"></div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Desliza</span>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 10l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </header>
+
+  <main>
+    <!-- ACTIVIDADES PERMANENTES -->
+    <section class="permanentes reveal" aria-labelledby="perm-title">
+      <h2 id="perm-title" class="block-title">Actividades permanentes</h2>
+      <div class="perm-grid">
+        <article class="perm-card">
+          <div class="perm-day">Lunes</div>
+          <div class="perm-body">
+            <h3>Juntas de Comunidad e Iniciación 1</h3>
+            <p class="perm-time">8:00 &ndash; 9:30 p.m.</p>
+          </div>
+        </article>
+        <article class="perm-card">
+          <div class="perm-day">Jueves</div>
+          <div class="perm-body">
+            <h3>Hora Santa</h3>
+            <p class="perm-time">8:00 p.m.</p>
+          </div>
+        </article>
+      </div>
+      <p class="perm-note">
+        <strong>Nota:</strong> Las juntas de los lunes no se realizan en las fechas calendarizadas para
+        <em>Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación</em>.
+      </p>
+    </section>
+
+    <!-- FILTROS -->
+    <nav class="filters" id="filters" aria-label="Filtrar por categoría">
+      <div class="filters-inner" id="filters-inner">
+        <!-- chips generados por JS -->
+      </div>
+    </nav>
+
+    <!-- AGENDA -->
+    <div class="agenda" id="agenda">
+      <!-- meses generados por JS -->
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>No hay actividades de este tipo. Toca otro filtro para verlas.</p>
+  </main>
+
+  <!-- PIE -->
+  <footer class="site-footer">
+    <img class="footer-logo" src="assets/logo-el-vive.png" alt="ÉL VIVE" />
+    <p>Movimiento Juvenil Católico</p>
+    <p class="footer-small">Calendarización propuesta · Junio – Diciembre 2026</p>
+  </footer>
+
+  <button class="to-top" id="to-top" aria-label="Volver arriba" hidden>
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M7 14l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <!-- MODAL: GALERÍA DE FOTOS DE JUNTAS PASADAS -->
+  <div class="gallery-modal" id="gallery-modal" role="dialog" aria-modal="true" aria-labelledby="gallery-title" aria-hidden="true" hidden>
+    <div class="gallery-backdrop" data-close></div>
+    <div class="gallery-box">
+      <button class="gallery-close" id="gallery-close" type="button" aria-label="Cerrar" data-close>&times;</button>
+      <h3 class="gallery-title" id="gallery-title"></h3>
+      <p class="gallery-date" id="gallery-date"></p>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- fotos generadas por JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX: foto en pantalla completa con navegación -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto en pantalla completa" aria-hidden="true" hidden>
+    <button class="lb-close" id="lb-close" type="button" aria-label="Cerrar" data-lb-close>&times;</button>
+    <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Foto anterior">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <figure class="lb-figure">
+      <img id="lb-img" src="" alt="" />
+      <figcaption class="lb-caption" id="lb-caption"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Foto siguiente">
+      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

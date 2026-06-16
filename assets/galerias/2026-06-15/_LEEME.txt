@@ -1,0 +1,26 @@
+FOTOS DE LA JUNTA · Lunes 15 de Junio 2026 ("Junta normal")
+============================================================
+
+Sube AQUÍ las 2 fotos de esta junta.
+
+Usa EXACTAMENTE estos nombres de archivo (en minúsculas y con extensión .jpg):
+
+   imagen-01-junta-ini.jpg
+   imagen-02-junta-comunidad.jpg
+
+En cuanto coloques las imágenes con esos nombres, aparecerán solas al dar
+clic en la junta del 15 de junio en el calendario. Mientras no estén, se
+muestra un recuadro gris que dice "Imagen pendiente".
+
+¿Tus fotos son .png en vez de .jpg?  Avísame y ajusto el nombre en el código,
+o simplemente renombra tus archivos a .jpg.
+
+------------------------------------------------------------
+CAMBIAR LOS TEXTOS (captions) de cada foto:
+   Edita el archivo  app.js  (en la raíz del proyecto),
+   busca la sección  GALERIAS  →  "Junio-15".
+
+AGREGAR FOTOS A OTRA JUNTA PASADA:
+   1. Crea una carpeta nueva, ej.  assets/galerias/2026-07-13/
+   2. En app.js, dentro de GALERIAS, agrega una clave "Mes-Día"
+      (ej. "Julio-13") con sus fotos y captions.
