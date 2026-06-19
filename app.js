@@ -67,6 +67,7 @@ const EVENTOS = [
   { mes: "Julio", dia: 13, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Julio", dia: 18, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Julio", dia: 20, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
+  { mes: "Julio", dia: "24 – 26", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #121 de Monterrey", desc: "Nos unimos todos en oración", rango: true },
   { mes: "Julio", dia: 27, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
 
   // ===== AGOSTO =====
@@ -77,9 +78,11 @@ const EVENTOS = [
   { mes: "Agosto", dia: 24, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Agosto", dia: 29, dow: "Sáb", cat: "economica", titulo: "Actividad económica chica" },
   { mes: "Agosto", dia: 29, dow: "Sáb", cat: "misa", titulo: "Misa mensual", desc: "Sabado", hora: "5:00 p.m." },
+  { mes: "Agosto", dia: "31 – 2", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #122 de Monterrey", desc: "Nos unimos todos en oración", rango: true },
   { mes: "Agosto", dia: 31, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
   // ===== SEPTIEMBRE =====
+  { mes: "Septiembre", dia: "4 – 6", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #3 de Chihuahua", desc: "Nos unimos todos en oración", rango: true },
   { mes: "Septiembre", dia: 5, dow: "Sáb", cat: "misa", titulo: "Misa de Niños", desc: "Sabado", hora: "5:00 p.m." },
   { mes: "Septiembre", dia: 7, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 14, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
