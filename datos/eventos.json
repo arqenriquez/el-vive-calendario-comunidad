@@ -104,6 +104,15 @@
     "hora": "8:00 p.m."
   },
   {
+    "mes": "Julio",
+    "dia": "31 – 2",
+    "dow": "Vie a Dom",
+    "cat": "especial",
+    "titulo": "Retiro #122 de Monterrey",
+    "desc": "Nos unimos todos en oración",
+    "rango": true
+  },
+  {
     "mes": "Agosto",
     "dia": "3 – 16",
     "dow": "Lun a Dom",
@@ -157,15 +166,6 @@
     "titulo": "Misa mensual",
     "hora": "5:00 p.m.",
     "desc": "Sabado"
-  },
-  {
-    "mes": "Agosto",
-    "dia": "31 – 2",
-    "dow": "Vie a Dom",
-    "cat": "especial",
-    "titulo": "Retiro #122 de Monterrey",
-    "desc": "Nos unimos todos en oración",
-    "rango": true
   },
   {
     "mes": "Agosto",
