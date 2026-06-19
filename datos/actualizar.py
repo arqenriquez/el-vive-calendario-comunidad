@@ -11,7 +11,7 @@ Uso:
 import json
 import os
 import re
-from datetime import date
+from datetime import date, datetime
 
 import openpyxl
 
@@ -20,6 +20,7 @@ RAIZ = os.path.dirname(AQUI)
 XLSX_PATH = os.path.join(AQUI, "calendario-el-vive.xlsx")
 JSON_PATH = os.path.join(AQUI, "eventos.json")
 APPJS_PATH = os.path.join(RAIZ, "app.js")
+INDEX_PATH = os.path.join(RAIZ, "index.html")
 
 ANIO = 2026
 ORDEN_MESES = ["Junio", "Julio", "Agosto", "Septiembre",
@@ -154,12 +155,31 @@ def actualizar_appjs(eventos):
         f.write(src)
 
 
+def sellar_version():
+    """Renueva ?v=<fechahora> en styles.css y app.js dentro de index.html.
+
+    Así los navegadores descargan la versión nueva en lugar de reusar la
+    guardada en caché (evita que la gente vea el calendario desactualizado).
+    """
+    token = datetime.now().strftime("%Y%m%d%H%M")
+    with open(INDEX_PATH, encoding="utf-8") as f:
+        src = f.read()
+    nuevo = re.sub(r'(href|src)="(styles\.css|app\.js)(\?v=\d+)?"',
+                   rf'\1="\2?v={token}"', src)
+    if nuevo != src:
+        with open(INDEX_PATH, "w", encoding="utf-8") as f:
+            f.write(nuevo)
+    return token
+
+
 def main():
     eventos = leer_excel()
     with open(JSON_PATH, "w", encoding="utf-8") as f:
         json.dump(eventos, f, ensure_ascii=False, indent=2)
     actualizar_appjs(eventos)
-    print(f"Listo: {len(eventos)} eventos -> eventos.json y app.js actualizados.")
+    token = sellar_version()
+    print(f"Listo: {len(eventos)} eventos -> eventos.json y app.js actualizados. "
+          f"(versión de caché: {token})")
 
 
 if __name__ == "__main__":
