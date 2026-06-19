@@ -94,12 +94,17 @@ def leer_excel():
             e["rango"] = True
         eventos.append(e)
 
-    # Ordena por mes y día inicial
+    # Ordena por mes y día inicial. Los eventos sin día definido (ej. apostolado
+    # "fecha por definir") van al FINAL de su mes (día = 99).
     def clave(e):
-        try:
-            d = int(re.split(r"[–\-]", str(e["dia"]))[0].strip())
-        except ValueError:
-            d = 0
+        s = str(e["dia"]).strip()
+        if not s:
+            d = 99
+        else:
+            try:
+                d = int(re.split(r"[–\-]", s)[0].strip())
+            except ValueError:
+                d = 99
         return (ORDEN_MESES.index(e["mes"]) if e["mes"] in ORDEN_MESES else 99, d)
 
     eventos.sort(key=clave)

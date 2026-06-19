@@ -48,14 +48,6 @@
   },
   {
     "mes": "Julio",
-    "dia": "",
-    "dow": "",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual",
-    "desc": "Lugar y Fecha exacta por definir"
-  },
-  {
-    "mes": "Julio",
     "dia": 5,
     "dow": "Dom",
     "cat": "misa",
@@ -114,7 +106,7 @@
     "rango": true
   },
   {
-    "mes": "Agosto",
+    "mes": "Julio",
     "dia": "",
     "dow": "",
     "cat": "apostolado",
@@ -178,7 +170,7 @@
     "hora": "8:00 p.m."
   },
   {
-    "mes": "Septiembre",
+    "mes": "Agosto",
     "dia": "",
     "dow": "",
     "cat": "apostolado",
@@ -252,7 +244,7 @@
     "hora": "8:00 p.m."
   },
   {
-    "mes": "Octubre",
+    "mes": "Septiembre",
     "dia": "",
     "dow": "",
     "cat": "apostolado",
@@ -316,7 +308,7 @@
     "hora": "8:00 p.m."
   },
   {
-    "mes": "Noviembre",
+    "mes": "Octubre",
     "dia": "",
     "dow": "",
     "cat": "apostolado",
@@ -387,7 +379,7 @@
     "hora": "8:00 p.m."
   },
   {
-    "mes": "Diciembre",
+    "mes": "Noviembre",
     "dia": "",
     "dow": "",
     "cat": "apostolado",
@@ -437,5 +429,13 @@
     "dow": "Jue",
     "cat": "especial",
     "titulo": "Última Hora Santa del año"
+  },
+  {
+    "mes": "Diciembre",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
   }
 ]
