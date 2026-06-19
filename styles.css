@@ -229,6 +229,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 }
 .event-dow { font-size: .68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-soft); font-weight: 600; }
 .event-num { font-size: 1.7rem; font-weight: 700; line-height: 1; color: var(--cat, var(--verde)); }
+/* Casilla de fecha "por definir" (ej. apostolado mensual sin día exacto) */
+.event-num--tbd { font-size: 1.5rem; }
+.event-date--tbd .event-dow { text-transform: none; letter-spacing: .2px; font-size: .62rem; margin-top: .25rem; line-height: 1.15; }
 .event-body { flex: 1; min-width: 0; }
 .event-title { font-size: .98rem; font-weight: 600; color: var(--ink); }
 .event-desc { font-size: .83rem; color: var(--ink-soft); margin-top: .15rem; }

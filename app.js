@@ -41,6 +41,7 @@ function diaFin(e) {
 
 // ¿El evento ya terminó respecto a la fecha de HOY? (se recalcula en cada carga)
 function esPasado(e) {
+  if (!String(e.dia).trim()) return false; // sin fecha definida: nunca se atenúa
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
   const fin = new Date(ANIO, MES_NUM[e.mes], diaFin(e));
@@ -62,50 +63,50 @@ const EVENTOS = [
   { mes: "Junio", dia: 29, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
 
   // ===== JULIO =====
+  { mes: "Julio", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Julio", dia: 5, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Julio", dia: 6, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
   { mes: "Julio", dia: 13, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Julio", dia: 18, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Julio", dia: 20, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Julio", dia: "24 – 26", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #121 de Monterrey", desc: "Nos unimos todos en oración", rango: true },
   { mes: "Julio", dia: 27, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Julio", dia: "31 – 2", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #122 de Monterrey", desc: "Nos unimos todos en oración", rango: true },
 
   // ===== AGOSTO =====
+  { mes: "Agosto", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Agosto", dia: "3 – 16", dow: "Lun a Dom", cat: "especial", titulo: "Vacaciones", desc: "Del lunes 3 al domingo 16 de agosto.", rango: true },
   { mes: "Agosto", dia: 11, dow: "Mar", cat: "misa", titulo: "Misa por el 30.º Aniversario de la Comunidad ÉL VIVE" },
   { mes: "Agosto", dia: 17, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Agosto", dia: 22, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Agosto", dia: 24, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Agosto", dia: 29, dow: "Sáb", cat: "economica", titulo: "Actividad económica chica" },
   { mes: "Agosto", dia: 29, dow: "Sáb", cat: "misa", titulo: "Misa mensual", desc: "Sabado", hora: "5:00 p.m." },
   { mes: "Agosto", dia: 31, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
   // ===== SEPTIEMBRE =====
+  { mes: "Septiembre", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Septiembre", dia: "4 – 6", dow: "Vie a Dom", cat: "especial", titulo: "Retiro #3 de Chihuahua", desc: "Nos unimos todos en oración", rango: true },
   { mes: "Septiembre", dia: 5, dow: "Sáb", cat: "misa", titulo: "Misa de Niños", desc: "Sabado", hora: "5:00 p.m." },
   { mes: "Septiembre", dia: 7, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 14, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 15, dow: "Mar", cat: "especial", titulo: "Kermés de la Parroquia La Resurrección" },
-  { mes: "Septiembre", dia: 19, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Septiembre", dia: 21, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 26, dow: "Sáb", cat: "misa", titulo: "Misa mensual", desc: "Sabado", hora: "5:00 p.m." },
   { mes: "Septiembre", dia: 28, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
   // ===== OCTUBRE =====
+  { mes: "Octubre", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Octubre", dia: 5, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Octubre", dia: 10, dow: "Sáb", cat: "especial", titulo: "Primera limpieza de rancho con Comunidad de Iniciación 1", desc: "Incluye un momento de convivencia, oración y encuentro en el rancho." },
   { mes: "Octubre", dia: 12, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Octubre", dia: 17, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Octubre", dia: 19, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Octubre", dia: 24, dow: "Sáb", cat: "economica", titulo: "Actividad económica grande (Conferencias)" },
   { mes: "Octubre", dia: 24, dow: "Sáb", cat: "misa", titulo: "Misa mensual", desc: "Sabado", hora: "5:00 p.m." },
   { mes: "Octubre", dia: 26, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
   // ===== NOVIEMBRE =====
+  { mes: "Noviembre", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Noviembre", dia: 2, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 2, dow: "Lun", cat: "economica", titulo: "Entrega de boletos de la Mega Rifa" },
-  { mes: "Noviembre", dia: 7, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
   { mes: "Noviembre", dia: 9, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 14, dow: "Sáb", cat: "misa", titulo: "Misa mensual y convivencia con KIDS", desc: "(O apostolado con KIDS, por definir.)", hora: "5:00 p.m." },
   { mes: "Noviembre", dia: 16, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
@@ -114,7 +115,7 @@ const EVENTOS = [
   { mes: "Noviembre", dia: 30, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
 
   // ===== DICIEMBRE =====
-  { mes: "Diciembre", dia: 5, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual" },
+  { mes: "Diciembre", dia: "", dow: "", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Fecha exacta por definir" },
   { mes: "Diciembre", dia: 7, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Diciembre", dia: 8, dow: "Mar", cat: "economica", titulo: "Mega Rifa" },
   { mes: "Diciembre", dia: 11, dow: "Vie", cat: "especial", titulo: "Peregrinación" },
@@ -218,6 +219,12 @@ function eventoHTML(e) {
   const desc = e.desc ? `<p class="event-desc">${e.desc}</p>` : "";
   const pasado = esPasado(e) ? "past" : "";
 
+  // Eventos sin día definido (ej. apostolado "fecha por definir"): casilla especial.
+  const sinFecha = !String(e.dia).trim();
+  const fechaBox = sinFecha
+    ? `<span class="event-num event-num--tbd">📅</span><span class="event-dow">por definir</span>`
+    : `<span class="event-dow">${e.dow}</span><span class="event-num">${e.dia}</span>`;
+
   // Galería: solo en juntas que YA pasaron y que tienen fotos registradas.
   const clave = claveEvento(e);
   const tieneGaleria = esPasado(e) && GALERIAS[clave];
@@ -230,9 +237,8 @@ function eventoHTML(e) {
     : "";
 
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
-    <div class="event-date">
-      <span class="event-dow">${e.dow}</span>
-      <span class="event-num">${e.dia}</span>
+    <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
+      ${fechaBox}
     </div>
     <div class="event-body">
       <h3 class="event-title">${e.titulo}</h3>

@@ -48,6 +48,14 @@
   },
   {
     "mes": "Julio",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
+  },
+  {
+    "mes": "Julio",
     "dia": 5,
     "dow": "Dom",
     "cat": "misa",
@@ -70,13 +78,6 @@
     "cat": "comunidad",
     "titulo": "Junta de Comunidad / INI",
     "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Julio",
-    "dia": 18,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual"
   },
   {
     "mes": "Julio",
@@ -114,6 +115,14 @@
   },
   {
     "mes": "Agosto",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
+  },
+  {
+    "mes": "Agosto",
     "dia": "3 – 16",
     "dow": "Lun a Dom",
     "cat": "especial",
@@ -135,13 +144,6 @@
     "cat": "comunidad",
     "titulo": "Junta de Comunidad / INI",
     "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Agosto",
-    "dia": 22,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual"
   },
   {
     "mes": "Agosto",
@@ -174,6 +176,14 @@
     "cat": "matrimonios",
     "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
     "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Septiembre",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
   },
   {
     "mes": "Septiembre",
@@ -218,13 +228,6 @@
   },
   {
     "mes": "Septiembre",
-    "dia": 19,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual"
-  },
-  {
-    "mes": "Septiembre",
     "dia": 21,
     "dow": "Lun",
     "cat": "comunidad",
@@ -250,6 +253,14 @@
   },
   {
     "mes": "Octubre",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
+  },
+  {
+    "mes": "Octubre",
     "dia": 5,
     "dow": "Lun",
     "cat": "comunidad",
@@ -271,13 +282,6 @@
     "cat": "comunidad",
     "titulo": "Junta de Comunidad / INI",
     "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Octubre",
-    "dia": 17,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual"
   },
   {
     "mes": "Octubre",
@@ -313,6 +317,14 @@
   },
   {
     "mes": "Noviembre",
+    "dia": "",
+    "dow": "",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
+  },
+  {
+    "mes": "Noviembre",
     "dia": 2,
     "dow": "Lun",
     "cat": "comunidad",
@@ -325,13 +337,6 @@
     "dow": "Lun",
     "cat": "economica",
     "titulo": "Entrega de boletos de la Mega Rifa"
-  },
-  {
-    "mes": "Noviembre",
-    "dia": 7,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual"
   },
   {
     "mes": "Noviembre",
@@ -383,10 +388,11 @@
   },
   {
     "mes": "Diciembre",
-    "dia": 5,
-    "dow": "Sáb",
+    "dia": "",
+    "dow": "",
     "cat": "apostolado",
-    "titulo": "Apostolado mensual"
+    "titulo": "Apostolado mensual",
+    "desc": "Lugar y Fecha exacta por definir"
   },
   {
     "mes": "Diciembre",
