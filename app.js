@@ -58,9 +58,9 @@ const EVENTOS = [
   { mes: "Junio", dia: 1, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 8, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
   { mes: "Junio", dia: 15, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Junio", dia: 20, dow: "Sáb", cat: "apostolado", titulo: "Apostolado" },
   { mes: "Junio", dia: 22, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 29, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
+  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Hora por definir" },
 
   // ===== JULIO =====
   { mes: "Julio", dia: 5, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
