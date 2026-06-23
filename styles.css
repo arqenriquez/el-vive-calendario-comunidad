@@ -251,21 +251,27 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 /* Evento de rango (vacaciones) */
 .event.is-range { border-left-style: dashed; background: var(--verde-tint); }
 
-/* Evento ya pasado: se atenúa en gris (se calcula solo según la fecha de hoy) */
+/* Evento ya realizado: tono gris claro + check verde de "ya fue" */
 .event.past {
-  --cat: #a8a3a0;
-  background: #f3f0ee;
-  filter: grayscale(1);
-  opacity: .62;
+  --cat: #b0aaa6;
+  background: #f5f3f1;
 }
-.event.past .event-title { color: var(--ink-soft); }
+.event.past .event-title { color: var(--ink-soft); padding-right: 1.5rem; }
 .event.past .event-time { color: var(--ink-soft); background: #e7e2df; }
 .event.past:hover { transform: none; box-shadow: var(--shadow-sm); }
 
-/* Junta pasada CON fotos: clicable y a color (invita a abrir la galería) */
+/* Check verde "ya se realizó" (esquina superior derecha) */
+.event-done {
+  position: absolute; top: .5rem; right: .55rem; z-index: 2;
+  display: grid; place-items: center;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: #2f9e5e; color: #fff;
+  font-size: .72rem; font-weight: 800; line-height: 1;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .22);
+}
+
+/* Junta con fotos: clicable (invita a abrir la galería) */
 .event.has-gallery { cursor: pointer; }
-.event.past.has-gallery { filter: none; opacity: .92; }
-.event.past.has-gallery .event-title { color: var(--ink); }
 .event.has-gallery:hover,
 .event.has-gallery:focus-visible {
   transform: translateX(3px);

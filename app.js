@@ -53,6 +53,12 @@ function claveEvento(e) {
   return `${e.mes}-${e.dia}`;
 }
 
+// ¿La junta ya se realizó? Sí cuando pasó su fecha, o cuando ya tiene fotos
+// cargadas (si hay fotos, es porque ya ocurrió, aunque sea hoy mismo).
+function yaFue(e) {
+  return esPasado(e) || Boolean(GALERIAS[claveEvento(e)]);
+}
+
 const EVENTOS = [
   // ===== JUNIO =====
   { mes: "Junio", dia: 1, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
@@ -138,6 +144,14 @@ const EVENTOS = [
    Las fotos solo se ven al dar clic en juntas que YA pasaron.
    =================================================== */
 const GALERIAS = {
+  "Junio-22": {
+    fotos: [
+      { src: "assets/galerias/2026-06-22/imagen-01.jpg", caption: "Junta de Iniciación #1" },
+      { src: "assets/galerias/2026-06-22/imagen-02.jpg", caption: "Junta de Iniciación #1" },
+      { src: "assets/galerias/2026-06-22/imagen-03.jpg", caption: "Junta de Comunidad" },
+      { src: "assets/galerias/2026-06-22/imagen-04.jpg", caption: "Junta de Comunidad" },
+    ],
+  },
   "Junio-8": {
     fotos: [
       {
@@ -217,7 +231,11 @@ function eventoHTML(e) {
   const c = CATEGORIAS[e.cat];
   const hora = e.hora ? `<span class="event-time">🕐 ${e.hora}</span>` : "";
   const desc = e.desc ? `<p class="event-desc">${e.desc}</p>` : "";
-  const pasado = esPasado(e) ? "past" : "";
+  const seRealizo = yaFue(e);
+  const pasado = seRealizo ? "past" : "";
+  const doneCheck = seRealizo
+    ? `<span class="event-done" title="Ya se realizó" aria-label="Ya se realizó">✓</span>`
+    : "";
 
   // Eventos sin día definido (ej. apostolado "fecha por definir"): casilla especial.
   const sinFecha = !String(e.dia).trim();
@@ -225,9 +243,9 @@ function eventoHTML(e) {
     ? `<span class="event-num event-num--tbd">📅</span><span class="event-dow">por definir</span>`
     : `<span class="event-dow">${e.dow}</span><span class="event-num">${e.dia}</span>`;
 
-  // Galería: solo en juntas que YA pasaron y que tienen fotos registradas.
+  // Galería: juntas que ya se realizaron y tienen fotos registradas.
   const clave = claveEvento(e);
-  const tieneGaleria = esPasado(e) && GALERIAS[clave];
+  const tieneGaleria = seRealizo && GALERIAS[clave];
   const galClass = tieneGaleria ? "has-gallery" : "";
   const galAttrs = tieneGaleria
     ? `data-galeria="${clave}" tabindex="0" role="button" aria-label="Ver fotos de ${e.titulo}"`
@@ -237,6 +255,7 @@ function eventoHTML(e) {
     : "";
 
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
+    ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
       ${fechaBox}
     </div>

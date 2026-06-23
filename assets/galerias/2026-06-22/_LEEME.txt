@@ -1,0 +1,19 @@
+FOTOS DE LA JUNTA · Lunes 22 de Junio 2026 (Junta de Comunidad / INI)
+=====================================================================
+
+Sube AQUÍ las 4 fotos de esta junta.
+
+Usa EXACTAMENTE estos nombres de archivo (en minúsculas y con extensión .jpg):
+
+   imagen-01.jpg
+   imagen-02.jpg
+   imagen-03.jpg
+   imagen-04.jpg
+
+En cuanto coloques las imágenes con esos nombres, aparecerán solas al dar
+clic en la junta del 22 de junio en el calendario.
+
+¿Quieres textos (captions) debajo de cada foto?  Dímelos y los agrego en
+app.js, sección GALERIAS -> "Junio-22" (ahora están vacíos).
+
+¿Tus fotos son .png en vez de .jpg?  Avísame y ajusto el nombre en el código.
