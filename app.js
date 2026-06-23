@@ -66,7 +66,7 @@ const EVENTOS = [
   { mes: "Junio", dia: 15, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 22, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 29, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Hospital General del Estado (Blvd. Colosio y Quintero Arce)", hora: "7:30 p.m." },
+  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Hospital General del Estado (Blvd. Colosio y Quintero Arce)", hora: "7:30 p.m.", mapa: "https://maps.app.goo.gl/wZGdSHUt6B2ged2w8" },
 
   // ===== JULIO =====
   { mes: "Julio", dia: 5, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
@@ -254,6 +254,11 @@ function eventoHTML(e) {
     ? `<span class="event-photos-hint">📷 Ver fotos</span>`
     : "";
 
+  // Botón "Ver ubicación" (solo si el evento trae link de Google Maps).
+  const mapa = e.mapa
+    ? `<a class="event-map" href="${e.mapa}" target="_blank" rel="noopener noreferrer">📍 Ver ubicación</a>`
+    : "";
+
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
@@ -264,6 +269,7 @@ function eventoHTML(e) {
       ${desc}
       <div class="event-meta">
         ${hora}
+        ${mapa}
         <span class="event-tag">${c.nombre}</span>
         ${galHint}
       </div>

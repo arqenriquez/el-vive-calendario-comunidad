@@ -241,6 +241,15 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   font-size: .76rem; font-weight: 600; color: var(--verde);
   background: var(--verde-tint); padding: .12rem .5rem; border-radius: 999px;
 }
+/* Botón "Ver ubicación" (abre Google Maps) */
+.event-map {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-size: .74rem; font-weight: 700; text-decoration: none;
+  color: #fff; background: #2f6f9f;
+  padding: .14rem .6rem; border-radius: 999px;
+  transition: filter .2s ease, transform .2s ease;
+}
+.event-map:hover { filter: brightness(1.08); transform: translateY(-1px); }
 .event-tag {
   font-size: .7rem; font-weight: 600; letter-spacing: .3px;
   color: var(--cat, var(--verde));

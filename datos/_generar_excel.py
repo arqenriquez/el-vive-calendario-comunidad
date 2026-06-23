@@ -37,7 +37,7 @@ CAT_NOMBRE = {
 DOW_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]  # date.weekday(): Lun=0
 
 COLUMNS = ["Mes", "Día", "Día semana", "Categoría", "Título",
-           "Hora", "Descripción", "Rango (varios días)"]
+           "Hora", "Descripción", "Rango (varios días)", "Ubicación (Google Maps)"]
 
 
 def dow_es(mes, dia):
@@ -95,16 +95,17 @@ def main():
             e.get("hora", ""),
             e.get("desc", ""),
             "Sí" if rango else "",
+            e.get("mapa", ""),
         ]
         for c, v in enumerate(valores, start=1):
             cell = ws.cell(row=r, column=c, value=v)
             cell.border = borde
-            cell.alignment = izq if c in (5, 7) else centro
+            cell.alignment = izq if c in (5, 7, 9) else centro
 
     nfilas = len(eventos) + 1
 
     # --- Anchos de columna ---
-    anchos = [13, 9, 11, 26, 48, 12, 50, 16]
+    anchos = [13, 9, 11, 26, 48, 12, 50, 16, 38]
     for i, w in enumerate(anchos, start=1):
         ws.column_dimensions[get_column_letter(i)].width = w
 
