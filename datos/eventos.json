@@ -45,7 +45,8 @@
     "dow": "Mar",
     "cat": "apostolado",
     "titulo": "Apostolado mensual",
-    "desc": "Lugar y Hora por definir"
+    "hora": "7:30 p.m.",
+    "desc": "Hospital General del Estado (Blvd. Colosio y Quintero Arce)"
   },
   {
     "mes": "Julio",

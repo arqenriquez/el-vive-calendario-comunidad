@@ -66,7 +66,7 @@ const EVENTOS = [
   { mes: "Junio", dia: 15, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 22, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 29, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar y Hora por definir" },
+  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Hospital General del Estado (Blvd. Colosio y Quintero Arce)", hora: "7:30 p.m." },
 
   // ===== JULIO =====
   { mes: "Julio", dia: 5, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
