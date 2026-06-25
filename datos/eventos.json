@@ -40,14 +40,15 @@
     "hora": "8:00 p.m."
   },
   {
-    "mes": "Junio",
-    "dia": 30,
-    "dow": "Mar",
+    "mes": "Julio",
+    "dia": 1,
+    "dow": "Mié",
     "cat": "apostolado",
     "titulo": "Apostolado mensual",
-    "hora": "7:30 p.m.",
+    "hora": "8:00 p.m.",
     "desc": "Hospital General del Estado (Blvd. Colosio y Quintero Arce)",
-    "mapa": "https://maps.app.goo.gl/wZGdSHUt6B2ged2w8"
+    "mapa": "https://maps.app.goo.gl/wZGdSHUt6B2ged2w8",
+    "reprogramado": true
   },
   {
     "mes": "Julio",

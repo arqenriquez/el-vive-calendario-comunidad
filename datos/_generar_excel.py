@@ -37,7 +37,8 @@ CAT_NOMBRE = {
 DOW_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]  # date.weekday(): Lun=0
 
 COLUMNS = ["Mes", "Día", "Día semana", "Categoría", "Título",
-           "Hora", "Descripción", "Rango (varios días)", "Ubicación (Google Maps)"]
+           "Hora", "Descripción", "Rango (varios días)", "Ubicación (Google Maps)",
+           "Reprogramado"]
 
 
 def dow_es(mes, dia):
@@ -96,6 +97,7 @@ def main():
             e.get("desc", ""),
             "Sí" if rango else "",
             e.get("mapa", ""),
+            "Sí" if e.get("reprogramado") else "",
         ]
         for c, v in enumerate(valores, start=1):
             cell = ws.cell(row=r, column=c, value=v)
@@ -105,7 +107,7 @@ def main():
     nfilas = len(eventos) + 1
 
     # --- Anchos de columna ---
-    anchos = [13, 9, 11, 26, 48, 12, 50, 16, 38]
+    anchos = [13, 9, 11, 26, 48, 12, 50, 16, 38, 15]
     for i, w in enumerate(anchos, start=1):
         ws.column_dimensions[get_column_letter(i)].width = w
 
@@ -116,12 +118,15 @@ def main():
     dv_mes = DataValidation(type="list", formula1='"%s"' % ",".join(ORDEN_MESES), allow_blank=False)
     dv_cat = DataValidation(type="list", formula1='"%s"' % ",".join(CAT_NOMBRE.values()), allow_blank=False)
     dv_rango = DataValidation(type="list", formula1='"Sí,No"', allow_blank=True)
+    dv_reprog = DataValidation(type="list", formula1='"Sí,No"', allow_blank=True)
     ws.add_data_validation(dv_mes)
     ws.add_data_validation(dv_cat)
     ws.add_data_validation(dv_rango)
+    ws.add_data_validation(dv_reprog)
     dv_mes.add(f"A2:A{nfilas}")
     dv_cat.add(f"D2:D{nfilas}")
     dv_rango.add(f"H2:H{nfilas}")
+    dv_reprog.add(f"J2:J{nfilas}")
 
     # --- Hoja de instrucciones ---
     ins = wb.create_sheet("Instrucciones")

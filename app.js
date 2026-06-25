@@ -66,9 +66,9 @@ const EVENTOS = [
   { mes: "Junio", dia: 15, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 22, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Junio", dia: 29, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Junio", dia: 30, dow: "Mar", cat: "apostolado", titulo: "Apostolado mensual", desc: "Hospital General del Estado (Blvd. Colosio y Quintero Arce)", hora: "7:30 p.m.", mapa: "https://maps.app.goo.gl/wZGdSHUt6B2ged2w8" },
 
   // ===== JULIO =====
+  { mes: "Julio", dia: 1, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Hospital General del Estado (Blvd. Colosio y Quintero Arce)", hora: "8:00 p.m.", mapa: "https://maps.app.goo.gl/wZGdSHUt6B2ged2w8", reprogramado: true },
   { mes: "Julio", dia: 5, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Julio", dia: 6, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
   { mes: "Julio", dia: 13, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
@@ -259,6 +259,11 @@ function eventoHTML(e) {
     ? `<a class="event-map" href="${e.mapa}" target="_blank" rel="noopener noreferrer">📍 Ver ubicación</a>`
     : "";
 
+  // Aviso de reprogramación / cambio de fecha.
+  const reprog = e.reprogramado
+    ? `<p class="event-reprog">🔁 Reprogramado · cambio de fecha</p>`
+    : "";
+
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
@@ -266,6 +271,7 @@ function eventoHTML(e) {
     </div>
     <div class="event-body">
       <h3 class="event-title">${e.titulo}</h3>
+      ${reprog}
       ${desc}
       <div class="event-meta">
         ${hora}

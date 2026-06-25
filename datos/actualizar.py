@@ -81,6 +81,8 @@ def leer_excel():
         desc = limpio(fila[6])
         rango = limpio(fila[7]).lower() in ("sí", "si", "x", "verdadero", "true")
         mapa = limpio(fila[8]) if len(fila) > 8 else ""  # link de Google Maps (opcional)
+        reprogramado = (limpio(fila[9]).lower() in ("sí", "si", "x", "verdadero", "true")
+                        if len(fila) > 9 else False)
 
         cat = NOMBRE_CAT.get(cat_nombre, cat_nombre)
         # dow: para rangos respeta lo escrito; si no, recalcula desde la fecha
@@ -95,6 +97,8 @@ def leer_excel():
             e["rango"] = True
         if mapa:
             e["mapa"] = mapa
+        if reprogramado:
+            e["reprogramado"] = True
         eventos.append(e)
 
     # Ordena por mes y día inicial. Los eventos sin día definido (ej. apostolado
@@ -134,6 +138,8 @@ def evento_a_js(e):
         partes.append("rango: true")
     if e.get("mapa"):
         partes.append(f'mapa: {js_valor(e["mapa"])}')
+    if e.get("reprogramado"):
+        partes.append("reprogramado: true")
     return "  { " + ", ".join(partes) + " },"
 
 

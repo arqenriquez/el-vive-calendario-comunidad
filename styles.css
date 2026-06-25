@@ -250,6 +250,14 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   transition: filter .2s ease, transform .2s ease;
 }
 .event-map:hover { filter: brightness(1.08); transform: translateY(-1px); }
+/* Aviso de reprogramación / cambio de fecha */
+.event-reprog {
+  display: inline-flex; align-items: center; gap: .3rem;
+  margin-top: .25rem;
+  font-size: .73rem; font-weight: 700;
+  color: #fff; background: #d97a28;
+  padding: .14rem .6rem; border-radius: 999px;
+}
 .event-tag {
   font-size: .7rem; font-weight: 600; letter-spacing: .3px;
   color: var(--cat, var(--verde));
