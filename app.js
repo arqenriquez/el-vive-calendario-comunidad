@@ -261,7 +261,7 @@ function eventoHTML(e) {
 
   // Aviso de reprogramación / cambio de fecha.
   const reprog = e.reprogramado
-    ? `<p class="event-reprog">🔁 Reprogramado · cambio de fecha</p>`
+    ? `<p class="event-reprog">🔁 Fecha actualizada</p>`
     : "";
 
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
