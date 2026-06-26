@@ -182,6 +182,21 @@ const GALERIAS = {
   },
 };
 
+/* ===================================================
+   INFO (imagen informativa de un evento, ej. flyer)
+   ---------------------------------------------------
+   Igual que GALERIAS pero para eventos PRÓXIMOS: muestra un botón
+   "ℹ️ Ver info" que abre la imagen a pantalla completa.
+   Clave "Mes-Día" (debe coincidir con el evento del calendario).
+   =================================================== */
+const INFO = {
+  "Julio-1": {
+    fotos: [
+      { src: "assets/info/2026-07-01/apostolado.jpg", caption: "Apostolado mensual · 1 de julio" },
+    ],
+  },
+};
+
 /* ============ RENDER ============ */
 function render() {
   renderFiltros();
@@ -264,6 +279,11 @@ function eventoHTML(e) {
     ? `<p class="event-reprog">🔁 Fecha actualizada</p>`
     : "";
 
+  // Botón "Ver info" (imagen informativa, ej. flyer de un evento próximo).
+  const infoBtn = INFO[clave]
+    ? `<button class="event-info" type="button" data-info="${clave}">ℹ️ Ver info</button>`
+    : "";
+
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
@@ -276,6 +296,7 @@ function eventoHTML(e) {
       <div class="event-meta">
         ${hora}
         ${mapa}
+        ${infoBtn}
         <span class="event-tag">${c.nombre}</span>
         ${galHint}
       </div>
@@ -436,12 +457,26 @@ function cerrarLightbox() {
   if (document.getElementById("gallery-modal").hidden) document.body.style.overflow = "";
 }
 
+// Abre la imagen informativa ("Ver info") a pantalla completa en el lightbox.
+function abrirInfo(clave) {
+  const info = INFO[clave];
+  if (!info) return;
+  galeriaActual = info.fotos;
+  abrirLightbox(0);
+}
+
 function initLightbox() {
   // Abrir al hacer clic en una foto real de la galería.
   document.getElementById("gallery-grid").addEventListener("click", (e) => {
     const wrap = e.target.closest(".gallery-imgwrap");
     if (!wrap || wrap.classList.contains("is-empty")) return;
     abrirLightbox(Number(wrap.dataset.index || 0));
+  });
+
+  // Botón "Ver info" de un evento (abre su imagen a pantalla completa).
+  document.getElementById("agenda").addEventListener("click", (e) => {
+    const btn = e.target.closest(".event-info");
+    if (btn) abrirInfo(btn.dataset.info);
   });
 
   const lb = document.getElementById("lightbox");

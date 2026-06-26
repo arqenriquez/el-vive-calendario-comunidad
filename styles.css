@@ -250,6 +250,15 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   transition: filter .2s ease, transform .2s ease;
 }
 .event-map:hover { filter: brightness(1.08); transform: translateY(-1px); }
+/* Botón "Ver info" (abre una imagen informativa a pantalla completa) */
+.event-info {
+  display: inline-flex; align-items: center; gap: .25rem;
+  font-family: inherit; font-size: .74rem; font-weight: 700;
+  color: #fff; background: var(--verde); border: none; cursor: pointer;
+  padding: .14rem .6rem; border-radius: 999px;
+  transition: filter .2s ease, transform .2s ease;
+}
+.event-info:hover { filter: brightness(1.08); transform: translateY(-1px); }
 /* Aviso de reprogramación / cambio de fecha */
 .event-reprog {
   display: inline-flex; align-items: center; gap: .3rem;

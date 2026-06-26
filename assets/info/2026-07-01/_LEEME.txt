@@ -1,0 +1,16 @@
+IMAGEN DE INFO · Apostolado mensual · Miércoles 1 de Julio 2026
+================================================================
+
+Sube AQUÍ la imagen (flyer / info) de este apostolado.
+
+Usa EXACTAMENTE este nombre de archivo (en minúsculas, extensión .jpg):
+
+   apostolado.jpg
+
+En cuanto la coloques con ese nombre, aparecerá el botón "ℹ️ Ver info"
+en el evento del 1 de julio; al tocarlo se abre la imagen a pantalla
+completa.
+
+¿Tu imagen es .png en vez de .jpg?  Avísame y ajusto el nombre en el código.
+¿Quieres más de una imagen?  También se puede (se navegan con flechas);
+dímelo y agrego las que necesites.
