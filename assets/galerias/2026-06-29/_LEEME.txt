@@ -1,0 +1,25 @@
+FOTOS DE LA JUNTA · Lunes 29 de Junio 2026 ("Junta de Comunidad / INI")
+============================================================
+
+Sube AQUÍ las 6 fotos de esta junta.
+
+Usa EXACTAMENTE estos nombres de archivo (en minúsculas y con extensión .jpg):
+
+   imagen-01.jpg
+   imagen-02.jpg
+   imagen-03.jpg
+   imagen-04.jpg
+   imagen-05.jpg
+   imagen-06.jpg
+
+En cuanto coloques las imágenes con esos nombres, aparecerán solas al dar
+clic en la junta del 29 de junio en el calendario. Mientras no estén, se
+muestra un recuadro gris que dice "Imagen pendiente".
+
+¿Tus fotos son .png en vez de .jpg?  Avísame y ajusto el nombre en el código,
+o simplemente renombra tus archivos a .jpg.
+
+------------------------------------------------------------
+CAMBIAR LOS TEXTOS (captions) de cada foto:
+   Edita el archivo  app.js  (en la raíz del proyecto),
+   busca la sección  GALERIAS  ->  "Junio-29".

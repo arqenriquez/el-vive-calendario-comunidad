@@ -193,6 +193,34 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 .month-year { font-size: 1rem; font-weight: 500; color: var(--ink-soft); }
 .month-line { flex: 1; height: 2px; background: var(--line); border-radius: 2px; }
 
+/* ---- Meses cerrados (toggle contraído por default) ---- */
+.month-head--toggle {
+  width: 100%;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: .2rem 0;
+  margin-bottom: .6rem;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background .18s ease;
+}
+.month-head--toggle:hover { background: rgba(0, 0, 0, .03); }
+.month-head--toggle:focus-visible { outline: 2px solid var(--verde-soft); outline-offset: 3px; }
+.month-count {
+  font-size: .82rem; font-weight: 500; color: var(--ink-soft);
+  white-space: nowrap;
+}
+.month-chevron {
+  font-size: 1.7rem; line-height: 1; color: var(--ink-soft);
+  transition: transform .25s ease;
+}
+.month--collapsible.is-collapsed .month-chevron { transform: rotate(-90deg); }
+.month--collapsible.is-collapsed .timeline { display: none; }
+
 .timeline { position: relative; padding-left: 1.6rem; }
 .timeline::before {
   content: ""; position: absolute; left: 6px; top: 6px; bottom: 6px;
