@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=202607020959" />
+  <link rel="stylesheet" href="styles.css?v=202607021230" />
 </head>
 <body>
 
@@ -106,6 +106,29 @@
     </button>
   </div>
 
-  <script src="app.js?v=202607020959"></script>
+  <!-- MODAL: ENVIAR COMENTARIO (privado, va a Google Sheets) -->
+  <div class="comment-modal" id="comment-modal" role="dialog" aria-modal="true" aria-labelledby="comment-heading" aria-hidden="true" hidden>
+    <div class="comment-backdrop" data-cclose></div>
+    <div class="comment-box">
+      <button class="comment-close" id="comment-close" type="button" aria-label="Cerrar" data-cclose>&times;</button>
+      <h3 class="comment-heading" id="comment-heading">Enviar comentario</h3>
+      <p class="comment-junta" id="comment-junta"></p>
+      <form class="comment-form" id="comment-form" novalidate>
+        <label class="comment-label" for="comment-nombre">Nombre <span class="req">*</span></label>
+        <input class="comment-input" id="comment-nombre" name="nombre" type="text" autocomplete="name" maxlength="80" />
+
+        <label class="comment-label" for="comment-gusto">¿Qué te gustó de la junta? <span class="req">*</span></label>
+        <textarea class="comment-input" id="comment-gusto" name="gusto" rows="3" maxlength="1000"></textarea>
+
+        <label class="comment-label" for="comment-mejorar">¿Qué crees que pudo mejorar en la junta? <span class="opt">(opcional)</span></label>
+        <textarea class="comment-input" id="comment-mejorar" name="mejorar" rows="3" maxlength="1000"></textarea>
+
+        <button class="comment-submit" id="comment-submit" type="submit">Enviar</button>
+        <p class="comment-status" id="comment-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js?v=202607021230"></script>
 </body>
 </html>

@@ -24,6 +24,10 @@ const CATEGORIAS = {
 
 const ANIO = 2026;
 
+// URL de la aplicación web de Google Apps Script que recibe los comentarios.
+// (Pública, no secreta.) Los comentarios llegan a un Google Sheet privado del dueño.
+const COMENTARIOS_URL = "https://script.google.com/macros/s/AKfycbzmlawCn-ajfGgoIe01zWkRbdrq_OUj3C_VLyR04N9rXebYRTrEoGYswELS1YYko4Rx_g/exec";
+
 const ORDEN_MESES = ["Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 // Mes (texto) -> índice de mes de JavaScript (0 = enero)
@@ -332,6 +336,11 @@ function eventoHTML(e) {
     ? `<button class="event-info" type="button" data-info="${clave}">ℹ️ Ver info</button>`
     : "";
 
+  // Botón "Enviar comentario": solo en juntas/eventos que ya se realizaron.
+  const comentarBtn = seRealizo
+    ? `<button class="event-comment" type="button" data-comentar="${clave}">💬 Enviar comentarios</button>`
+    : "";
+
   return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
@@ -347,6 +356,7 @@ function eventoHTML(e) {
         ${infoBtn}
         <span class="event-tag">${c.nombre}</span>
         ${galHint}
+        ${comentarBtn}
       </div>
     </div>
   </article>`;
@@ -545,6 +555,104 @@ function initLightbox() {
   });
 }
 
+/* ============ COMENTARIOS DE JUNTAS ============ */
+function textoJunta(e) {
+  if (!e) return "";
+  const dia = String(e.dia).trim();
+  const fecha = dia ? `${e.dow} ${e.dia} de ${e.mes} · ${ANIO}` : `${e.mes} · ${ANIO}`;
+  return `${e.titulo} · ${fecha}`;
+}
+
+function abrirComentario(clave) {
+  const ev = EVENTOS.find((e) => claveEvento(e) === clave);
+  const modal = document.getElementById("comment-modal");
+  modal.dataset.clave = clave;
+  document.getElementById("comment-junta").textContent = textoJunta(ev);
+  // Limpiar el formulario y el estado previos.
+  document.getElementById("comment-form").reset();
+  const status = document.getElementById("comment-status");
+  status.textContent = "";
+  status.className = "comment-status";
+  document.querySelectorAll("#comment-form .is-error").forEach((el) => el.classList.remove("is-error"));
+  document.getElementById("comment-submit").disabled = false;
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  document.getElementById("comment-nombre").focus();
+}
+
+function cerrarComentario() {
+  const modal = document.getElementById("comment-modal");
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  if (document.getElementById("gallery-modal").hidden) document.body.style.overflow = "";
+}
+
+async function enviarComentario() {
+  const modal = document.getElementById("comment-modal");
+  const clave = modal.dataset.clave || "";
+  const ev = EVENTOS.find((e) => claveEvento(e) === clave);
+  const nombre = document.getElementById("comment-nombre");
+  const gusto = document.getElementById("comment-gusto");
+  const mejorar = document.getElementById("comment-mejorar");
+  const status = document.getElementById("comment-status");
+  const submit = document.getElementById("comment-submit");
+
+  // Validación: nombre y "¿qué te gustó?" son obligatorios.
+  [nombre, gusto].forEach((el) => el.classList.remove("is-error"));
+  let faltante = null;
+  if (!nombre.value.trim()) faltante = nombre;
+  else if (!gusto.value.trim()) faltante = gusto;
+  if (faltante) {
+    faltante.classList.add("is-error");
+    faltante.focus();
+    status.textContent = "Por favor llena los campos marcados con *.";
+    status.className = "comment-status is-bad";
+    return;
+  }
+
+  submit.disabled = true;
+  status.textContent = "Enviando…";
+  status.className = "comment-status";
+
+  const body = new URLSearchParams({
+    juntaClave: clave,
+    juntaTitulo: textoJunta(ev),
+    nombre: nombre.value.trim(),
+    gusto: gusto.value.trim(),
+    mejorar: mejorar.value.trim(),
+  });
+
+  try {
+    await fetch(COMENTARIOS_URL, { method: "POST", body });
+    status.textContent = "¡Gracias! Recibimos tu comentario 🙏";
+    status.className = "comment-status is-ok";
+    setTimeout(cerrarComentario, 1400);
+  } catch (err) {
+    submit.disabled = false;
+    status.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.";
+    status.className = "comment-status is-bad";
+  }
+}
+
+function initComentarios() {
+  document.getElementById("agenda").addEventListener("click", (e) => {
+    const btn = e.target.closest(".event-comment");
+    if (btn) abrirComentario(btn.dataset.comentar);
+  });
+  const modal = document.getElementById("comment-modal");
+  modal.addEventListener("click", (e) => {
+    if (e.target.hasAttribute("data-cclose")) cerrarComentario();
+  });
+  document.getElementById("comment-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    enviarComentario();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.hidden) cerrarComentario();
+  });
+}
+
 /* ============ INIT ============ */
 document.addEventListener("DOMContentLoaded", () => {
   render();
@@ -552,4 +660,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initToTop();
   initGaleria();
   initLightbox();
+  initComentarios();
 });
