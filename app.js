@@ -184,6 +184,10 @@ const GALERIAS = {
         src: "assets/galerias/2026-06-08/imagen-03-junta-comunidad.jpg",
         caption: "Este lunes nos compartió tema CODEPRO de la Arquidiócesis de Hermosillo",
       },
+      {
+        src: "assets/galerias/2026-06-08/imagen-04.jpg",
+        caption: "Matrimonios ÉL VIVE, KIDS y Juntas · 8 de junio",
+      },
     ],
   },
   "Junio-15": {
@@ -196,6 +200,14 @@ const GALERIAS = {
         src: "assets/galerias/2026-06-15/imagen-02-junta-comunidad.jpg",
         caption: "Este día estuvimos hablando acerca de la vida de grandes santos de nuestra Iglesia",
       },
+    ],
+  },
+  "Junio-1": {
+    fotos: [
+      { src: "assets/galerias/2026-06-01/imagen-01.jpg", caption: "Junta de Comunidad / INI · 1 de junio" },
+      { src: "assets/galerias/2026-06-01/imagen-02.jpg", caption: "Junta de Comunidad / INI · 1 de junio" },
+      { src: "assets/galerias/2026-06-01/imagen-03.jpg", caption: "Junta de Comunidad / INI · 1 de junio" },
+      { src: "assets/galerias/2026-06-01/imagen-04.jpg", caption: "Junta de Comunidad / INI · 1 de junio" },
     ],
   },
 };
