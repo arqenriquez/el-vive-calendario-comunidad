@@ -158,12 +158,12 @@
   },
   {
     "mes": "Agosto",
-    "dia": 29,
-    "dow": "Sáb",
+    "dia": 30,
+    "dow": "Dom",
     "cat": "misa",
     "titulo": "Misa mensual",
     "hora": "5:00 p.m.",
-    "desc": "Sabado"
+    "desc": "Domingo"
   },
   {
     "mes": "Agosto",
@@ -192,12 +192,12 @@
   },
   {
     "mes": "Septiembre",
-    "dia": 5,
-    "dow": "Sáb",
+    "dia": 6,
+    "dow": "Dom",
     "cat": "misa",
     "titulo": "Misa de Niños",
     "hora": "5:00 p.m.",
-    "desc": "Sabado"
+    "desc": "Domingo"
   },
   {
     "mes": "Septiembre",
@@ -232,12 +232,12 @@
   },
   {
     "mes": "Septiembre",
-    "dia": 26,
-    "dow": "Sáb",
+    "dia": 27,
+    "dow": "Dom",
     "cat": "misa",
     "titulo": "Misa mensual",
     "hora": "5:00 p.m.",
-    "desc": "Sabado"
+    "desc": "Domingo"
   },
   {
     "mes": "Septiembre",
@@ -296,12 +296,12 @@
   },
   {
     "mes": "Octubre",
-    "dia": 24,
-    "dow": "Sáb",
+    "dia": 25,
+    "dow": "Dom",
     "cat": "misa",
     "titulo": "Misa mensual",
     "hora": "5:00 p.m.",
-    "desc": "Sabado"
+    "desc": "Domingo"
   },
   {
     "mes": "Octubre",
@@ -344,8 +344,8 @@
   },
   {
     "mes": "Noviembre",
-    "dia": 14,
-    "dow": "Sáb",
+    "dia": 15,
+    "dow": "Dom",
     "cat": "misa",
     "titulo": "Misa mensual y convivencia con KIDS",
     "hora": "5:00 p.m.",

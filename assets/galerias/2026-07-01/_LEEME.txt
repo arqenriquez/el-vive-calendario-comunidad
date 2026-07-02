@@ -1,0 +1,23 @@
+FOTOS DEL APOSTOLADO · Miércoles 1 de Julio 2026 ("Apostolado mensual")
+============================================================
+
+Esta galería tiene 4 fotos en total:
+
+   imagen-01.jpg  <- YA ESTÁ (es la imagen que ya tenía el evento)
+   imagen-02.jpg  <- SUBE AQUÍ tu foto
+   imagen-03.jpg  <- SUBE AQUÍ tu foto
+   imagen-04.jpg  <- SUBE AQUÍ tu foto
+
+Sube las 3 fotos nuevas con esos nombres EXACTOS (minúsculas, extensión .jpg).
+
+En cuanto las coloques, aparecerán solas al dar clic en "📷 Ver fotos" del
+Apostolado del 1 de julio. Mientras no estén, se muestra un recuadro gris
+que dice "Imagen pendiente".
+
+¿Tus fotos son .png en vez de .jpg?  Avísame y ajusto el nombre en el código,
+o simplemente renombra tus archivos a .jpg.
+
+------------------------------------------------------------
+CAMBIAR LOS TEXTOS (captions) de cada foto:
+   Edita el archivo  app.js  (en la raíz del proyecto),
+   busca la sección  GALERIAS  ->  "Julio-1".
