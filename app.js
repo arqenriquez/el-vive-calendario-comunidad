@@ -223,7 +223,13 @@ const GALERIAS = {
    "ℹ️ Ver info" que abre la imagen a pantalla completa.
    Clave "Mes-Día" (debe coincidir con el evento del calendario).
    =================================================== */
-const INFO = {};
+const INFO = {
+  "Julio-5": {
+    fotos: [
+      { src: "assets/galerias/2026-07-05/imagen-01.jpg", caption: "Misa mensual · domingo 5 de julio" },
+    ],
+  },
+};
 
 /* ============ RENDER ============ */
 function render() {
