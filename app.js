@@ -148,6 +148,14 @@ const EVENTOS = [
    Las fotos solo se ven al dar clic en juntas que YA pasaron.
    =================================================== */
 const GALERIAS = {
+  "Julio-6": {
+    fotos: [
+      { src: "assets/galerias/2026-07-06/imagen-01.jpg", caption: "Junta de Comunidad + INI 1" },
+      { src: "assets/galerias/2026-07-06/imagen-02.jpg", caption: "Junta de ÉL VIVE Matrimonios" },
+      { src: "assets/galerias/2026-07-06/imagen-03.jpg", caption: "Junta de Comunidad + INI 1" },
+      { src: "assets/galerias/2026-07-06/imagen-04.jpg", caption: "Junta de ÉL VIVE Kids" },
+    ],
+  },
   "Julio-1": {
     fotos: [
       { src: "assets/galerias/2026-07-01/imagen-01.jpg", caption: "Apostolado mensual · 1 de julio" },
