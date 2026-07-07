@@ -48,7 +48,14 @@ function esPasado(e) {
   if (!String(e.dia).trim()) return false; // sin fecha definida: nunca se atenúa
   const hoy = new Date();
   hoy.setHours(0, 0, 0, 0);
-  const fin = new Date(ANIO, MES_NUM[e.mes], diaFin(e));
+  const nums = String(e.dia).match(/\d+/g);
+  let mesFin = MES_NUM[e.mes];
+  // Rango que cruza de mes (ej. "31 – 2" = 31 jul al 2 ago): el último día
+  // es menor que el primero, así que el fin cae en el mes siguiente.
+  if (nums && nums.length > 1 && Number(nums[nums.length - 1]) < Number(nums[0])) {
+    mesFin += 1; // new Date maneja el desborde (dic -> enero del año siguiente)
+  }
+  const fin = new Date(ANIO, mesFin, diaFin(e));
   return fin < hoy;
 }
 
