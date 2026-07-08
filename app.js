@@ -36,6 +36,16 @@ const MES_NUM = {
   Julio: 6, Agosto: 7, Septiembre: 8, Octubre: 9, Noviembre: 10, Diciembre: 11,
 };
 
+/* ===== Estado de la interfaz (vista Lista / Mes) ===== */
+let vistaActual = "lista";   // 'lista' | 'mes'
+let filtroActivo = "todos";  // categoría activa (compartida entre ambas vistas)
+let mesActual = 0;           // índice dentro de ORDEN_MESES (grilla mostrada)
+
+// Etiquetas para el modal de detalle del día (ej. "Martes 7 de julio").
+const DOW_LARGO = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+const MESES_LARGO = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const MAX_EVENTOS_DIA = 3; // barras visibles por celda antes de "+N más"
+
 // Último día que abarca el evento (para rangos como "3 – 13" usa el 13)
 function diaFin(e) {
   if (typeof e.dia === "number") return e.dia;
@@ -62,6 +72,32 @@ function esPasado(e) {
 // Clave única de un evento por mes y día (ej. "Junio-15"). Sirve para ligar su galería.
 function claveEvento(e) {
   return `${e.mes}-${e.dia}`;
+}
+
+/* ===== Fechas para la vista Mes ===== */
+// Fecha sin horas (para comparar solo por día).
+function soloDia(d) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+// ¿Son el mismo día del calendario?
+function mismaFecha(a, b) {
+  return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+}
+// Rango { inicio, fin } (objetos Date) que abarca un evento, o null si no tiene fecha.
+// Soporta día único (número), rango en el mes ("24 – 26") y rango que cruza de
+// mes ("31 – 2", donde el 2.º número es menor que el 1.º).
+function rangoEvento(e) {
+  const m1 = MES_NUM[e.mes];
+  const dia = e.dia;
+  if (dia === "" || dia === undefined || dia === null) return null;
+  if (typeof dia === "number") {
+    return { inicio: new Date(ANIO, m1, dia), fin: new Date(ANIO, m1, dia) };
+  }
+  const nums = String(dia).split(/[–-]/).map((s) => parseInt(s.trim(), 10));
+  const d1 = nums[0];
+  const d2 = nums.length > 1 && !isNaN(nums[1]) ? nums[1] : d1;
+  const m2 = d2 < d1 ? m1 + 1 : m1; // el rango cruza al mes siguiente
+  return { inicio: new Date(ANIO, m1, d1), fin: new Date(ANIO, m2, d2) };
 }
 
 // ¿La junta ya se realizó? Sí cuando pasó su fecha, o cuando ya tiene fotos
@@ -254,20 +290,69 @@ function render() {
 }
 
 function renderFiltros() {
-  const cont = document.getElementById("filters-inner");
-  const chips = [`<button class="chip active" data-cat="todos"><span class="dot" style="--cat:var(--verde)"></span>Todos</button>`];
+  const cont = document.getElementById("filter-dropdown");
+  const opciones = [
+    `<button class="filter-option is-active" role="menuitemradio" aria-checked="true" data-cat="todos" style="--cat:var(--verde)"><span class="dot"></span>Todos</button>`,
+  ];
   for (const [key, c] of Object.entries(CATEGORIAS)) {
-    chips.push(
-      `<button class="chip" data-cat="${key}" style="--cat:${c.color}"><span class="dot"></span>${c.nombre}</button>`
+    opciones.push(
+      `<button class="filter-option" role="menuitemradio" aria-checked="false" data-cat="${key}" style="--cat:${c.color}"><span class="dot"></span>${c.nombre}</button>`
     );
   }
-  cont.innerHTML = chips.join("");
+  cont.innerHTML = opciones.join("");
   cont.addEventListener("click", (e) => {
-    const btn = e.target.closest(".chip");
+    const btn = e.target.closest(".filter-option");
     if (!btn) return;
-    cont.querySelectorAll(".chip").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    aplicarFiltro(btn.dataset.cat);
+    seleccionarFiltro(btn.dataset.cat);
+    cerrarMenuFiltro();
+    document.getElementById("filter-toggle").focus();
+  });
+}
+
+// Marca la opción activa, actualiza la etiqueta del botón y aplica el filtro.
+function seleccionarFiltro(cat) {
+  document.querySelectorAll(".filter-option").forEach((b) => {
+    const on = b.dataset.cat === cat;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-checked", on ? "true" : "false");
+  });
+  const toggle = document.getElementById("filter-toggle");
+  const label = document.getElementById("filter-toggle-label");
+  if (cat === "todos") {
+    label.textContent = "Tipo de junta";
+    toggle.classList.remove("has-filter");
+    toggle.style.removeProperty("--cat");
+  } else {
+    label.textContent = CATEGORIAS[cat].nombre;
+    toggle.classList.add("has-filter");
+    toggle.style.setProperty("--cat", CATEGORIAS[cat].color);
+  }
+  aplicarFiltro(cat);
+}
+
+/* ===== Menú desplegable de filtros ===== */
+function abrirMenuFiltro() {
+  document.getElementById("filter-dropdown").hidden = false;
+  document.getElementById("filter-toggle").setAttribute("aria-expanded", "true");
+}
+function cerrarMenuFiltro() {
+  document.getElementById("filter-dropdown").hidden = true;
+  document.getElementById("filter-toggle").setAttribute("aria-expanded", "false");
+}
+function initMenuFiltro() {
+  const btn = document.getElementById("filter-toggle");
+  const dd = document.getElementById("filter-dropdown");
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    dd.hidden ? abrirMenuFiltro() : cerrarMenuFiltro();
+  });
+  // Clic fuera del menú → cerrar.
+  document.addEventListener("click", (e) => {
+    if (!dd.hidden && !e.target.closest("#filter-menu")) cerrarMenuFiltro();
+  });
+  // Esc → cerrar (solo si no hay un modal encima que deba cerrarse primero).
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !dd.hidden) cerrarMenuFiltro();
   });
 }
 
@@ -383,9 +468,11 @@ function eventoHTML(e) {
   </article>`;
 }
 
-/* ============ FILTRO ============ */
+/* ============ FILTRO (compartido entre Lista y Mes) ============ */
 function aplicarFiltro(cat) {
-  const eventos = document.querySelectorAll(".event");
+  filtroActivo = cat;
+  // Filtrado de la Lista (solo dentro de #agenda: no tocar tarjetas del modal).
+  const eventos = document.querySelectorAll("#agenda .event");
   eventos.forEach((ev) => {
     const match = cat === "todos" || ev.dataset.cat === cat;
     ev.classList.toggle("filtered-out", !match);
@@ -395,8 +482,11 @@ function aplicarFiltro(cat) {
     const visibles = m.querySelectorAll(".event:not(.filtered-out)").length;
     m.classList.toggle("month-hidden", visibles === 0);
   });
-  const algo = document.querySelectorAll(".event:not(.filtered-out)").length;
-  document.getElementById("empty-state").hidden = algo !== 0;
+  const algo = document.querySelectorAll("#agenda .event:not(.filtered-out)").length;
+  // El aviso "sin actividades" de la Lista solo aplica cuando la Lista está visible.
+  document.getElementById("empty-state").hidden = vistaActual !== "lista" || algo !== 0;
+  // Si la grilla está activa, reflejar el filtro también ahí.
+  if (vistaActual === "mes") renderMes();
 }
 
 /* ============ ANIMACIONES AL SCROLL ============ */
@@ -469,7 +559,7 @@ function cerrarGaleria() {
   const modal = document.getElementById("gallery-modal");
   modal.hidden = true;
   modal.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
+  restaurarScroll();
 }
 
 function initGaleria() {
@@ -535,8 +625,8 @@ function cerrarLightbox() {
   const lb = document.getElementById("lightbox");
   lb.hidden = true;
   lb.setAttribute("aria-hidden", "true");
-  // Si la galería sigue abierta debajo, mantenemos el scroll bloqueado.
-  if (document.getElementById("gallery-modal").hidden) document.body.style.overflow = "";
+  // Si otro modal sigue abierto debajo, mantenemos el scroll bloqueado.
+  restaurarScroll();
 }
 
 // Abre la imagen informativa ("Ver info") a pantalla completa en el lightbox.
@@ -606,7 +696,7 @@ function cerrarComentario() {
   const modal = document.getElementById("comment-modal");
   modal.hidden = true;
   modal.setAttribute("aria-hidden", "true");
-  if (document.getElementById("gallery-modal").hidden) document.body.style.overflow = "";
+  restaurarScroll();
 }
 
 async function enviarComentario() {
@@ -674,6 +764,185 @@ function initComentarios() {
   });
 }
 
+/* ===================================================
+   VISTA MES (grilla mensual) + toggle Lista / Mes
+   =================================================== */
+
+// Restaura el scroll del body solo si NINGÚN modal sigue abierto.
+function restaurarScroll() {
+  const abierto = ["gallery-modal", "lightbox", "comment-modal", "dia-modal"]
+    .some((id) => !document.getElementById(id).hidden);
+  if (!abierto) document.body.style.overflow = "";
+}
+
+// Mes inicial de la grilla: el mes real actual si cae en el rango Jun–Dic 2026;
+// si no, el extremo más cercano.
+function mesInicial() {
+  const hoy = new Date();
+  if (hoy.getFullYear() !== ANIO) return hoy.getFullYear() < ANIO ? 0 : ORDEN_MESES.length - 1;
+  const idx = hoy.getMonth() - MES_NUM["Junio"]; // Junio = índice 0 de ORDEN_MESES
+  return Math.max(0, Math.min(ORDEN_MESES.length - 1, idx));
+}
+
+// Cambia entre vista Lista y vista Mes.
+function setVista(v) {
+  vistaActual = v;
+  document.querySelectorAll(".view-btn").forEach((b) => {
+    const on = b.dataset.vista === v;
+    b.classList.toggle("is-active", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  const esMes = v === "mes";
+  document.getElementById("agenda").hidden = esMes;
+  document.getElementById("mes-view").hidden = !esMes;
+  if (esMes) {
+    document.getElementById("empty-state").hidden = true; // el aviso de la Lista no aplica aquí
+    renderMes();
+  } else {
+    aplicarFiltro(filtroActivo); // recomputa el estado visible de la Lista
+  }
+}
+
+// Reconstruye la grilla del mes actual aplicando el filtro activo.
+function renderMes() {
+  const mesNombre = ORDEN_MESES[mesActual];
+  const jsMonth = MES_NUM[mesNombre];
+  document.getElementById("mes-title").textContent = `${mesNombre} ${ANIO}`;
+
+  // Flechas: deshabilitadas en los límites del rango permitido (Jun–Dic 2026).
+  document.getElementById("mes-prev").disabled = mesActual === 0;
+  document.getElementById("mes-next").disabled = mesActual === ORDEN_MESES.length - 1;
+
+  // Eventos con fecha que pasan el filtro (los "sin fecha" no entran a la grilla).
+  const visibles = EVENTOS.filter((e) => filtroActivo === "todos" || e.cat === filtroActivo);
+
+  // Grilla lunes→domingo, 6 filas fijas (42 celdas) para altura consistente.
+  const primero = new Date(ANIO, jsMonth, 1);
+  const leadDow = (primero.getDay() + 6) % 7; // 0 = lunes
+  const inicioGrid = new Date(ANIO, jsMonth, 1 - leadDow);
+  const hoy = soloDia(new Date());
+
+  let html = "";
+  let hayEnMes = false;
+
+  for (let i = 0; i < 42; i++) {
+    const d = new Date(inicioGrid.getFullYear(), inicioGrid.getMonth(), inicioGrid.getDate() + i);
+    const enMes = d.getMonth() === jsMonth;
+    const esHoy = mismaFecha(d, hoy);
+
+    // Eventos cuyo rango cubre este día.
+    const delDia = visibles.filter((e) => {
+      const r = rangoEvento(e);
+      return r && d >= soloDia(r.inicio) && d <= soloDia(r.fin);
+    });
+    if (enMes && delDia.length) hayEnMes = true;
+
+    const barras = delDia.slice(0, MAX_EVENTOS_DIA).map((e) => {
+      const r = rangoEvento(e);
+      const ini = mismaFecha(d, soloDia(r.inicio));
+      const fin = mismaFecha(d, soloDia(r.fin));
+      // Barra continua en rangos: solo se redondea en el 1.º y último día.
+      const extremos = `${ini ? "is-start" : ""} ${fin ? "is-end" : ""}`.trim();
+      const texto = e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
+      return `<span class="mes-bar ${extremos}" style="--cat:${CATEGORIAS[e.cat].color}" title="${e.titulo}">${texto}</span>`;
+    }).join("");
+    const extra = delDia.length - MAX_EVENTOS_DIA;
+    const mas = extra > 0 ? `<span class="mes-more">+${extra} más</span>` : "";
+
+    const clases = ["mes-cell", enMes ? "" : "mes-cell--out", delDia.length ? "has-eventos" : ""]
+      .filter(Boolean).join(" ");
+    const fechaKey = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    html += `<div class="${clases}" data-fecha="${fechaKey}">
+      <span class="mes-daynum${esHoy ? " is-today" : ""}">${d.getDate()}</span>
+      <div class="mes-bars">${barras}${mas}</div>
+    </div>`;
+  }
+
+  document.getElementById("mes-grid").innerHTML = html;
+  document.getElementById("mes-empty").hidden = hayEnMes;
+}
+
+// Abre el modal con el detalle de un día (reutiliza la tarjeta de la Lista).
+function abrirDia(fecha) {
+  const dia = soloDia(fecha);
+  const delDia = EVENTOS.filter((e) => {
+    if (filtroActivo !== "todos" && e.cat !== filtroActivo) return false;
+    const r = rangoEvento(e);
+    return r && dia >= soloDia(r.inicio) && dia <= soloDia(r.fin);
+  });
+  if (!delDia.length) return;
+
+  document.getElementById("dia-title").textContent =
+    `${DOW_LARGO[fecha.getDay()]} ${fecha.getDate()} de ${MESES_LARGO[fecha.getMonth()]}`;
+  const cont = document.getElementById("dia-events");
+  cont.innerHTML = delDia.map(eventoHTML).join("");
+  // Las tarjetas nacen con .reveal (opacity:0); dentro del modal las mostramos ya.
+  cont.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+
+  const modal = document.getElementById("dia-modal");
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  document.getElementById("dia-close").focus();
+}
+
+function cerrarDia() {
+  const modal = document.getElementById("dia-modal");
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+  restaurarScroll();
+}
+
+function initToggle() {
+  document.getElementById("view-toggle").addEventListener("click", (e) => {
+    const btn = e.target.closest(".view-btn");
+    if (btn) setVista(btn.dataset.vista);
+  });
+}
+
+function initMes() {
+  mesActual = mesInicial();
+  document.getElementById("mes-prev").addEventListener("click", () => {
+    if (mesActual > 0) { mesActual--; renderMes(); }
+  });
+  document.getElementById("mes-next").addEventListener("click", () => {
+    if (mesActual < ORDEN_MESES.length - 1) { mesActual++; renderMes(); }
+  });
+  // Clic en una celda con eventos → abre el modal del día.
+  document.getElementById("mes-grid").addEventListener("click", (e) => {
+    const cell = e.target.closest(".mes-cell.has-eventos");
+    if (!cell) return;
+    const [y, m, dd] = cell.dataset.fecha.split("-").map(Number);
+    abrirDia(new Date(y, m, dd));
+  });
+}
+
+function initDiaModal() {
+  const modal = document.getElementById("dia-modal");
+  modal.addEventListener("click", (e) => {
+    if (e.target.hasAttribute("data-dclose")) cerrarDia();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" || modal.hidden) return;
+    // No cerrar el modal del día si hay otro modal encima (galería/comentario/lightbox).
+    const encima = !document.getElementById("comment-modal").hidden
+      || !document.getElementById("gallery-modal").hidden
+      || !document.getElementById("lightbox").hidden;
+    if (!encima) cerrarDia();
+  });
+  // Re-enganche de las acciones de la tarjeta dentro del modal del día
+  // (los listeners originales viven en #agenda y no llegan hasta aquí).
+  document.getElementById("dia-events").addEventListener("click", (e) => {
+    const comentar = e.target.closest(".event-comment");
+    if (comentar) { abrirComentario(comentar.dataset.comentar); return; }
+    const info = e.target.closest(".event-info");
+    if (info) { abrirInfo(info.dataset.info); return; }
+    if (e.target.closest("a, button")) return; // links/botones conservan su acción
+    const art = e.target.closest(".event.has-gallery");
+    if (art) abrirGaleria(art.dataset.galeria);
+  });
+}
+
 /* ============ INIT ============ */
 document.addEventListener("DOMContentLoaded", () => {
   render();
@@ -682,4 +951,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initGaleria();
   initLightbox();
   initComentarios();
+  initMenuFiltro();
+  initToggle();
+  initMes();
+  initDiaModal();
 });

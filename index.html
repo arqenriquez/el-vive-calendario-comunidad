@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=202607021230" />
+  <link rel="stylesheet" href="styles.css?v=202607081500" />
 </head>
 <body>
 
@@ -52,19 +52,48 @@
       </div>
     </section>
 
-    <!-- FILTROS -->
+    <!-- FILTROS (menú desplegable) + TOGGLE DE VISTA (barra fija / sticky) -->
     <nav class="filters" id="filters" aria-label="Filtrar por categoría">
-      <div class="filters-inner" id="filters-inner">
-        <!-- chips generados por JS -->
+      <div class="filters-bar">
+        <div class="filter-menu" id="filter-menu">
+          <button class="filter-toggle" id="filter-toggle" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="filter-dropdown">
+            <span class="filter-ham" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="filter-toggle-label" id="filter-toggle-label">Tipo de junta</span>
+            <span class="filter-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="filter-dropdown" id="filter-dropdown" role="menu" aria-label="Tipo de junta" hidden>
+            <!-- opciones generadas por JS -->
+          </div>
+        </div>
+        <div class="view-toggle" id="view-toggle" role="group" aria-label="Cambiar vista del calendario">
+          <button class="view-btn is-active" type="button" data-vista="lista" aria-pressed="true">Lista</button>
+          <button class="view-btn" type="button" data-vista="mes" aria-pressed="false">Mes</button>
+        </div>
       </div>
     </nav>
 
-    <!-- AGENDA -->
+    <!-- AGENDA (vista Lista) -->
     <div class="agenda" id="agenda">
       <!-- meses generados por JS -->
     </div>
 
     <p class="empty-state" id="empty-state" hidden>No hay actividades de este tipo. Toca otro filtro para verlas.</p>
+
+    <!-- VISTA MES (grilla mensual) -->
+    <div class="mes-view" id="mes-view" hidden>
+      <div class="mes-nav">
+        <button class="mes-nav-btn" id="mes-prev" type="button" aria-label="Mes anterior">‹</button>
+        <h2 class="mes-title" id="mes-title" aria-live="polite"></h2>
+        <button class="mes-nav-btn" id="mes-next" type="button" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="mes-weekdays" aria-hidden="true">
+        <span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+      </div>
+      <div class="mes-grid" id="mes-grid">
+        <!-- celdas generadas por JS -->
+      </div>
+      <p class="mes-empty" id="mes-empty" hidden>No hay actividades de este tipo en este mes.</p>
+    </div>
   </main>
 
   <!-- PIE -->
@@ -106,6 +135,18 @@
     </button>
   </div>
 
+  <!-- MODAL: DETALLE DEL DÍA (vista Mes) -->
+  <div class="dia-modal" id="dia-modal" role="dialog" aria-modal="true" aria-labelledby="dia-title" aria-hidden="true" hidden>
+    <div class="dia-backdrop" data-dclose></div>
+    <div class="dia-box">
+      <button class="dia-close" id="dia-close" type="button" aria-label="Cerrar" data-dclose>&times;</button>
+      <h3 class="dia-title" id="dia-title"></h3>
+      <div class="dia-events" id="dia-events">
+        <!-- tarjetas de evento del día (reutiliza el diseño de la Lista) -->
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: ENVIAR COMENTARIO (privado, va a Google Sheets) -->
   <div class="comment-modal" id="comment-modal" role="dialog" aria-modal="true" aria-labelledby="comment-heading" aria-hidden="true" hidden>
     <div class="comment-backdrop" data-cclose></div>
@@ -129,6 +170,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=202607021230"></script>
+  <script src="app.js?v=202607081500"></script>
 </body>
 </html>

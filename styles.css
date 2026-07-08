@@ -152,10 +152,63 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.filters-inner {
+/* Barra: menú "Tipo de junta" a la izquierda + toggle de vista a la derecha. */
+.filters-bar {
   max-width: var(--maxw); margin: 0 auto;
-  display: flex; flex-wrap: wrap; gap: .5rem; padding: 0 1.1rem;
+  padding: 0 1.1rem;
+  display: flex; align-items: center; justify-content: space-between; gap: .7rem;
 }
+
+/* ---- Menú de filtros (botón hamburguesa + panel desplegable) ---- */
+.filter-menu { position: relative; }
+.filter-toggle {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font: inherit; font-size: .85rem; font-weight: 600;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: .5rem .95rem;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease;
+}
+.filter-toggle:hover { border-color: var(--verde-soft); }
+.filter-toggle.has-filter { border-color: var(--cat); color: var(--cat); }
+/* Icono hamburguesa (3 barras). */
+.filter-ham { display: inline-flex; flex-direction: column; gap: 3px; width: 16px; }
+.filter-ham span { display: block; height: 2px; border-radius: 2px; background: currentColor; }
+.filter-ham span:nth-child(2) { width: 70%; }
+.filter-caret { font-size: .75rem; color: var(--ink-soft); transition: transform .2s ease; }
+.filter-toggle[aria-expanded="true"] .filter-caret { transform: rotate(180deg); }
+.filter-toggle.has-filter .filter-caret { color: var(--cat); }
+
+.filter-dropdown {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 70;
+  min-width: 240px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  display: flex; flex-direction: column; gap: 2px;
+  animation: galPop .18s ease both;
+}
+.filter-dropdown[hidden] { display: none; }
+.filter-option {
+  display: flex; align-items: center; gap: .6rem;
+  font: inherit; font-size: .88rem; font-weight: 500;
+  color: var(--ink);
+  background: transparent; border: none; border-radius: 10px;
+  padding: .55rem .7rem; cursor: pointer; text-align: left;
+  transition: background .15s ease;
+}
+.filter-option:hover { background: rgba(0, 0, 0, .04); }
+.filter-option .dot { flex: 0 0 auto; width: 11px; height: 11px; border-radius: 50%; background: var(--cat, var(--verde)); }
+.filter-option.is-active {
+  font-weight: 700; color: var(--cat, var(--verde));
+  background: color-mix(in srgb, var(--cat, var(--verde)) 13%, transparent);
+}
+.filter-option.is-active .dot { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cat, var(--verde)) 25%, transparent); }
 .chip {
   flex: 0 0 auto;
   display: inline-flex; align-items: center; gap: .4rem;
@@ -588,3 +641,146 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 .comment-status { margin: 10px 0 0; font-size: .9rem; min-height: 1.2em; }
 .comment-status.is-ok { color: var(--verde, #2e7d32); }
 .comment-status.is-bad { color: #d32f2f; }
+
+/* ===================================================
+   TOGGLE LISTA / MES  +  VISTA MES (grilla mensual)
+   =================================================== */
+
+/* Segmented control (píldora), fijo a la derecha de la barra (no se desplaza). */
+.view-toggle {
+  flex: 0 0 auto;
+  display: flex;
+  width: max-content;
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+.view-btn {
+  font: inherit; font-size: .82rem; font-weight: 600;
+  color: var(--ink-soft);
+  background: transparent;
+  border: none; cursor: pointer;
+  padding: .4rem 1.15rem;
+  border-radius: 999px;
+  transition: background .2s ease, color .2s ease;
+}
+.view-btn.is-active { background: var(--verde); color: #fff; }
+.view-btn:not(.is-active):hover { color: var(--verde); }
+
+/* Contenedor de la vista Mes. */
+.mes-view { margin-top: 1.8rem; }
+.mes-view[hidden] { display: none; }
+
+/* Barra de navegación de mes. */
+.mes-nav {
+  display: flex; align-items: center; justify-content: center;
+  gap: 1rem; margin-bottom: 1.1rem;
+}
+.mes-title {
+  font-size: clamp(1.25rem, 3.5vw, 1.65rem);
+  font-weight: 800; color: var(--verde);
+  letter-spacing: -.3px; text-align: center; min-width: 8.5em;
+}
+.mes-nav-btn {
+  flex: 0 0 auto;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--line); background: var(--paper);
+  color: var(--ink-soft); font-size: 1.3rem; line-height: 1;
+  cursor: pointer; display: grid; place-items: center;
+  transition: border-color .2s ease, color .2s ease;
+}
+.mes-nav-btn:hover:not(:disabled) { border-color: var(--verde-soft); color: var(--verde); }
+.mes-nav-btn:disabled { opacity: .35; cursor: default; pointer-events: none; }
+
+/* Encabezado de días de la semana (lunes → domingo). */
+.mes-weekdays {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 6px; margin-bottom: 6px;
+}
+.mes-weekdays span {
+  text-align: center; font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .5px; color: var(--ink-soft);
+}
+
+/* Grilla: 6 filas × 7 columnas, celdas de altura fija (misma altura entre meses). */
+.mes-grid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.mes-cell {
+  height: clamp(64px, 12vw, 92px);
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 5px 5px 4px;
+  display: flex; flex-direction: column;
+}
+.mes-cell--out { background: rgba(0, 0, 0, .02); opacity: .5; }
+.mes-cell.has-eventos { cursor: pointer; }
+.mes-cell.has-eventos:hover { border-color: var(--verde-soft); box-shadow: var(--shadow-sm); }
+.mes-daynum {
+  font-size: .78rem; font-weight: 700; color: var(--ink);
+  line-height: 1; margin-bottom: 3px; align-self: flex-start;
+}
+.mes-daynum.is-today {
+  background: var(--verde); color: #fff;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center;
+}
+.mes-bars { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.mes-bar {
+  font-size: 10px; font-weight: 600; line-height: 1.5;
+  color: #fff; background: var(--cat, var(--verde));
+  border-radius: 0;                     /* por defecto sin redondear (celda intermedia de rango) */
+  padding: 1px 5px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+/* Redondeo solo en los extremos del rango; un evento de 1 día lleva ambos. */
+.mes-bar.is-start { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
+.mes-bar.is-end { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+.mes-more { font-size: 10px; font-weight: 600; color: var(--ink-soft); padding: 0 3px; }
+
+.mes-empty { text-align: center; color: var(--ink-soft); padding: 2.5rem 1rem 1rem; }
+.mes-empty[hidden] { display: none; }
+
+/* Modal de detalle del día (reutiliza la tarjeta de evento de la Lista). */
+.dia-modal {
+  position: fixed; inset: 0; z-index: 55;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.2rem;
+}
+.dia-modal[hidden] { display: none; }
+.dia-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(46, 34, 40, .55);
+  backdrop-filter: blur(3px);
+}
+.dia-box {
+  position: relative; z-index: 1;
+  width: min(480px, 100%); max-height: 82vh; overflow-y: auto;
+  background: var(--cream);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.3rem 1.6rem;
+  box-shadow: var(--shadow-md);
+  animation: galPop .28s ease both;
+}
+.dia-close {
+  position: absolute; top: .7rem; right: .8rem;
+  width: 36px; height: 36px; border: none; border-radius: 50%;
+  background: var(--verde-tint); color: var(--verde);
+  font-size: 1.55rem; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .2s ease, color .2s ease;
+}
+.dia-close:hover { background: var(--verde); color: #fff; }
+.dia-title {
+  color: var(--verde); font-size: 1.15rem; font-weight: 800;
+  text-transform: capitalize; padding-right: 2.4rem; margin-bottom: 1.1rem;
+}
+/* Dentro del modal no hay línea de tiempo: ocultamos el punto conector. */
+.dia-events .event::before { display: none; }
+.dia-events .event { margin-bottom: .85rem; }
+.dia-events .event:last-child { margin-bottom: 0; }
