@@ -1,0 +1,26 @@
+FOTOS DE LA JUNTA · Lunes 13 de Julio 2026
+("Junta de Comunidad / INI")
+============================================================
+
+Esta galería tiene 6 fotos en total:
+
+   imagen-01.jpg  <- SUBE AQUÍ tu foto   (Junta de Iniciación, tema de LA FE)
+   imagen-02.jpg  <- SUBE AQUÍ tu foto   (Junta de iniciación)
+   imagen-03.jpg  <- SUBE AQUÍ tu foto   (Junta de iniciación, nuestra hermana Citlali nos compartió el tema)
+   imagen-04.jpg  <- SUBE AQUÍ tu foto   (Comunidad de Iniciación)
+   imagen-05.jpg  <- SUBE AQUÍ tu foto   (Junta de comunidad, tema de LA ORACIÓN)
+   imagen-06.jpg  <- SUBE AQUÍ tu foto   (Junta de comunidad)
+
+Sube las 6 fotos nuevas con esos nombres EXACTOS (minúsculas, extensión .jpg).
+
+En cuanto las coloques, aparecerán solas al dar clic en "📷 Ver fotos" de la
+junta del 13 de julio. Mientras no estén, se muestra un recuadro gris que dice
+"Imagen pendiente".
+
+¿Tus fotos son .png en vez de .jpg?  Avísame y ajusto el nombre en el código,
+o simplemente renombra tus archivos a .jpg.
+
+------------------------------------------------------------
+CAMBIAR LOS TEXTOS (captions) de cada foto:
+   Edita el archivo  app.js  (en la raíz del proyecto),
+   busca la sección  GALERIAS  ->  "Julio-13".

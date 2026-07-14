@@ -191,6 +191,16 @@ const EVENTOS = [
    Las fotos solo se ven al dar clic en juntas que YA pasaron.
    =================================================== */
 const GALERIAS = {
+  "Julio-13": {
+    fotos: [
+      { src: "assets/galerias/2026-07-13/imagen-01.jpg", caption: "Junta de Iniciación, tema de LA FE" },
+      { src: "assets/galerias/2026-07-13/imagen-02.jpg", caption: "Junta de iniciación" },
+      { src: "assets/galerias/2026-07-13/imagen-03.jpg", caption: "Junta de iniciación, nuestra hermana Citlali nos compartió el tema" },
+      { src: "assets/galerias/2026-07-13/imagen-04.jpg", caption: "Comunidad de Iniciación" },
+      { src: "assets/galerias/2026-07-13/imagen-05.jpg", caption: "Junta de comunidad, tema de LA ORACIÓN" },
+      { src: "assets/galerias/2026-07-13/imagen-06.jpg", caption: "Junta de comunidad" },
+    ],
+  },
   "Julio-6": {
     fotos: [
       { src: "assets/galerias/2026-07-06/imagen-01.jpg", caption: "Junta de Comunidad + INI 1" },
