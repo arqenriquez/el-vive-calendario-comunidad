@@ -366,6 +366,14 @@ function initMenuFiltro() {
   });
 }
 
+// Meses que, aunque ya estén "cerrados" (todas sus fechas pasaron), queremos que
+// carguen DESPLEGADOS por default. Siguen siendo colapsables: el toggle funciona
+// igual y el usuario puede contraerlos con un clic.
+// Se agregó junio porque la función de comentarios se hizo pública en julio; así
+// junio queda visible al cargar para invitar a comentar esas juntas.
+// (Para revertir, deja el arreglo vacío: MESES_ABIERTOS_INICIO = [].)
+const MESES_ABIERTOS_INICIO = ["Junio"];
+
 function renderAgenda() {
   const agenda = document.getElementById("agenda");
   let html = "";
@@ -377,6 +385,9 @@ function renderAgenda() {
     // contraído (solo el título) y se despliega al dar clic. Así la página se
     // concentra en el mes vigente y los anteriores quedan como consulta.
     const cerrado = eventos.every(esPasado);
+    // Algunos meses cerrados se cargan abiertos (ver MESES_ABIERTOS_INICIO),
+    // pero conservan el toggle para poder contraerlos.
+    const contraidoInicio = cerrado && !MESES_ABIERTOS_INICIO.includes(mes);
 
     const headInner = `
         <span class="month-name">${mes}</span>
@@ -385,10 +396,10 @@ function renderAgenda() {
         ${cerrado ? `<span class="month-count">Ver fechas anteriores</span><span class="month-chevron" aria-hidden="true">▾</span>` : ""}`;
 
     const head = cerrado
-      ? `<button class="month-head month-head--toggle reveal" type="button" aria-expanded="false" aria-controls="tl-${mes}">${headInner}</button>`
+      ? `<button class="month-head month-head--toggle reveal" type="button" aria-expanded="${contraidoInicio ? "false" : "true"}" aria-controls="tl-${mes}">${headInner}</button>`
       : `<div class="month-head reveal">${headInner}</div>`;
 
-    html += `<section class="month ${cerrado ? "month--collapsible is-collapsed" : ""}" data-mes="${mes}">
+    html += `<section class="month ${cerrado ? "month--collapsible" : ""}${contraidoInicio ? " is-collapsed" : ""}" data-mes="${mes}">
       ${head}
       <div class="timeline" id="tl-${mes}">
         ${eventos.map(eventoHTML).join("")}
