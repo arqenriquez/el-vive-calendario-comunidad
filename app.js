@@ -74,6 +74,12 @@ function claveEvento(e) {
   return `${e.mes}-${e.dia}`;
 }
 
+// ¿Es el evento de "Vacaciones"? Se pinta en un naranja más claro que los
+// retiros para diferenciarlos (ambos son de categoría "especial").
+function esVacaciones(e) {
+  return /^vacaciones/i.test((e.titulo || "").trim());
+}
+
 /* ===== Fechas para la vista Mes ===== */
 // Fecha sin horas (para comparar solo por día).
 function soloDia(d) {
@@ -290,6 +296,11 @@ const INFO = {
       { src: "assets/galerias/2026-07-05/imagen-01.jpg", caption: "Misa mensual · domingo 5 de julio" },
     ],
   },
+  "Julio-29": {
+    fotos: [
+      { src: "assets/galerias/2026-07-29/imagen-01.jpg", caption: "Apostolado mensual · miércoles 29 de julio" },
+    ],
+  },
 };
 
 /* ============ RENDER ============ */
@@ -369,10 +380,8 @@ function initMenuFiltro() {
 // Meses que, aunque ya estén "cerrados" (todas sus fechas pasaron), queremos que
 // carguen DESPLEGADOS por default. Siguen siendo colapsables: el toggle funciona
 // igual y el usuario puede contraerlos con un clic.
-// Se agregó junio porque la función de comentarios se hizo pública en julio; así
-// junio queda visible al cargar para invitar a comentar esas juntas.
-// (Para revertir, deja el arreglo vacío: MESES_ABIERTOS_INICIO = [].)
-const MESES_ABIERTOS_INICIO = ["Junio"];
+// Vacío = todos los meses cerrados inician CONTRAÍDOS (incluido junio).
+const MESES_ABIERTOS_INICIO = [];
 
 function renderAgenda() {
   const agenda = document.getElementById("agenda");
@@ -468,7 +477,7 @@ function eventoHTML(e) {
     ? `<button class="event-comment" type="button" data-comentar="${clave}">💬 Enviar comentarios</button>`
     : "";
 
-  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
+  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${esVacaciones(e) ? "is-vacaciones" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
       ${fechaBox}
@@ -617,6 +626,11 @@ function mostrarFotoLb() {
   const f = galeriaActual[lbIndex];
   if (!f) return;
   const img = document.getElementById("lb-img");
+  const fig = img.closest(".lb-figure");
+  // Si la imagen aún no se ha subido (404), mostramos un recuadro "pendiente"
+  // en lugar del ícono de imagen rota.
+  fig.classList.remove("is-empty");
+  img.onerror = () => fig.classList.add("is-empty");
   img.src = f.src;
   img.alt = f.caption || `Foto ${lbIndex + 1}`;
   document.getElementById("lb-caption").textContent = f.caption || "";
@@ -864,13 +878,14 @@ function renderMes() {
       const fin = mismaFecha(d, soloDia(r.fin));
       // Barra continua en rangos: solo se redondea en el 1.º y último día.
       const extremos = `${ini ? "is-start" : ""} ${fin ? "is-end" : ""}`.trim();
+      const vac = esVacaciones(e) ? " is-vacaciones" : "";
       const texto = e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
-      return `<span class="mes-bar ${extremos}" style="--cat:${CATEGORIAS[e.cat].color}" title="${e.titulo}">${texto}</span>`;
+      return `<span class="mes-bar ${extremos}${vac}" style="--cat:${CATEGORIAS[e.cat].color}" title="${e.titulo}">${texto}</span>`;
     }).join("");
     const extra = delDia.length - MAX_EVENTOS_DIA;
     const mas = extra > 0 ? `<span class="mes-more">+${extra} más</span>` : "";
 
-    const clases = ["mes-cell", enMes ? "" : "mes-cell--out", delDia.length ? "has-eventos" : ""]
+    const clases = ["mes-cell", enMes ? "" : "mes-cell--out", delDia.length ? "has-eventos" : "", esHoy ? "is-today" : ""]
       .filter(Boolean).join(" ");
     const fechaKey = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
     html += `<div class="${clases}" data-fecha="${fechaKey}">

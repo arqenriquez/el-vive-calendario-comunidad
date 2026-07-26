@@ -1,0 +1,16 @@
+FLYER DEL APOSTOLADO · Miércoles 29 de Julio 2026 ("Apostolado mensual")
+========================================================================
+
+Este evento usa una IMAGEN INFORMATIVA (flyer), no una galería de fotos.
+Se muestra con el botón "ℹ️ Ver info" del apostolado del 29 de julio y se
+abre a pantalla completa.
+
+   imagen-01.jpg  <- SUBE AQUÍ el flyer (el diseño que ya tienes).
+
+Nombre EXACTO: imagen-01.jpg  (minúsculas, extensión .jpg)
+
+Mientras el archivo no esté, al dar clic en "ℹ️ Ver info" se muestra un
+recuadro que dice "Imagen pendiente" (no un ícono roto).
+
+¿Tu flyer es .png en vez de .jpg?  Renómbralo a .jpg, o avísame y ajusto
+el nombre en el código (app.js -> sección INFO -> "Julio-29").

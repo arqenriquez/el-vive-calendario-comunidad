@@ -26,6 +26,14 @@
   --c-especial:    #c2683b;
   --c-permanente:  #6b6b76;
 
+  /* Diferenciación dentro de "Especial": vacaciones en tono más claro que los retiros */
+  --c-especial-ink:  #8f4423;   /* texto terracota oscuro (legible sobre naranja claro) */
+  --c-especial-tint: #f7e7db;   /* fondo peach suave (tarjeta de vacaciones en la Lista) */
+
+  /* Acento para el día de HOY en la vista Mes (más llamativo que el verde de marca) */
+  --hoy:      #e4572e;
+  --hoy-tint: #fdece5;
+
   --shadow-sm: 0 2px 8px rgba(63, 72, 58, 0.07);
   --shadow-md: 0 8px 28px rgba(63, 72, 58, 0.14);
   --radius: 18px;
@@ -355,8 +363,10 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   padding: .12rem .5rem; border-radius: 999px;
 }
 
-/* Evento de rango (vacaciones) */
+/* Evento de rango (retiros / vacaciones) */
 .event.is-range { border-left-style: dashed; background: var(--verde-tint); }
+/* Vacaciones: se distingue de los retiros con un fondo naranja muy suave. */
+.event.is-range.is-vacaciones { background: var(--c-especial-tint); }
 
 /* Evento ya realizado: tono gris claro + check verde de "ya fue" */
 .event.past {
@@ -523,6 +533,17 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   max-width: 94vw; max-height: 80vh; object-fit: contain;
   border-radius: 8px; box-shadow: 0 14px 50px rgba(0, 0, 0, .55);
   animation: galPop .25s ease both;
+}
+/* Imagen aún no subida: recuadro "pendiente" en vez del ícono roto. */
+.lb-figure.is-empty img { display: none; }
+.lb-figure.is-empty::before {
+  content: "📷  Imagen pendiente";
+  display: grid; place-items: center;
+  width: min(78vw, 420px); height: min(52vh, 300px);
+  background: rgba(255, 255, 255, .06);
+  border: 1.5px dashed rgba(255, 255, 255, .35);
+  border-radius: 12px;
+  color: #fff; opacity: .85; font-size: .95rem; font-weight: 600;
 }
 .lb-caption {
   color: #fff; opacity: .92; font-size: .9rem; text-align: center;
@@ -725,10 +746,18 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   font-size: .78rem; font-weight: 700; color: var(--ink);
   line-height: 1; margin-bottom: 3px; align-self: flex-start;
 }
+/* Día de HOY: contorno resaltado en toda la celda + número en círculo de acento. */
+.mes-cell.is-today {
+  outline: 2.5px solid var(--hoy);
+  outline-offset: -1px;
+  background: var(--hoy-tint);
+}
+.mes-cell.is-today.mes-cell--out { opacity: 1; } /* si hoy cae en un día de otro mes, no lo atenúes */
 .mes-daynum.is-today {
-  background: var(--verde); color: #fff;
+  background: var(--hoy); color: #fff;
   width: 22px; height: 22px; border-radius: 50%;
   display: grid; place-items: center;
+  box-shadow: 0 1px 4px rgba(228, 87, 46, .45);
 }
 .mes-bars { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .mes-bar {
@@ -741,6 +770,12 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 /* Redondeo solo en los extremos del rango; un evento de 1 día lleva ambos. */
 .mes-bar.is-start { border-top-left-radius: 6px; border-bottom-left-radius: 6px; }
 .mes-bar.is-end { border-top-right-radius: 6px; border-bottom-right-radius: 6px; }
+/* Vacaciones: barra en naranja claro (semitransparente) con texto oscuro,
+   para diferenciarla de los retiros (naranja sólido). */
+.mes-bar.is-vacaciones {
+  background: color-mix(in srgb, var(--c-especial) 42%, transparent);
+  color: var(--c-especial-ink);
+}
 .mes-more { font-size: 10px; font-weight: 600; color: var(--ink-soft); padding: 0 3px; }
 
 .mes-empty { text-align: center; color: var(--ink-soft); padding: 2.5rem 1rem 1rem; }
