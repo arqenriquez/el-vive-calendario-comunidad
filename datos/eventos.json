@@ -422,9 +422,17 @@
     "mes": "Diciembre",
     "dia": 14,
     "dow": "Lun",
-    "cat": "especial",
-    "titulo": "Posada durante la junta",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
+    "hora": "8:00 p.m.",
     "desc": "Última junta del mes de diciembre."
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 16,
+    "dow": "Mié",
+    "cat": "especial",
+    "titulo": "Posada"
   },
   {
     "mes": "Diciembre",
