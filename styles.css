@@ -217,6 +217,10 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
   background: color-mix(in srgb, var(--cat, var(--verde)) 13%, transparent);
 }
 .filter-option.is-active .dot { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cat, var(--verde)) 25%, transparent); }
+/* Palomita de la casilla marcada: guarda su lugar aunque esté apagada,
+   para que la fila no brinque al prender y apagar tipos. */
+.filter-option .check { margin-left: auto; font-size: .8rem; opacity: 0; }
+.filter-option.is-active .check { opacity: 1; }
 .chip {
   flex: 0 0 auto;
   display: inline-flex; align-items: center; gap: .4rem;

@@ -38,7 +38,9 @@ const MES_NUM = {
 
 /* ===== Estado de la interfaz (vista Lista / Mes) ===== */
 let vistaActual = "lista";   // 'lista' | 'mes'
-let filtroActivo = "todos";  // categoría activa (compartida entre ambas vistas)
+// Tipos de junta marcados en el filtro (compartido entre ambas vistas).
+// Set vacío = «Todos»: no se oculta nada.
+const filtrosActivos = new Set();
 let mesActual = 0;           // índice dentro de ORDEN_MESES (grilla mostrada)
 
 // Etiquetas para el modal de detalle del día (ej. "Martes 7 de julio").
@@ -309,45 +311,64 @@ function render() {
   observarReveal();
 }
 
+// ¿Esta categoría pasa el filtro? Sin nada marcado se muestran todas.
+function pasaFiltro(cat) {
+  return filtrosActivos.size === 0 || filtrosActivos.has(cat);
+}
+
 function renderFiltros() {
   const cont = document.getElementById("filter-dropdown");
   const opciones = [
-    `<button class="filter-option is-active" role="menuitemradio" aria-checked="true" data-cat="todos" style="--cat:var(--verde)"><span class="dot"></span>Todos</button>`,
+    `<button class="filter-option is-active" role="menuitemcheckbox" aria-checked="true" data-cat="todos" style="--cat:var(--verde)"><span class="dot"></span>Todos<span class="check" aria-hidden="true">✓</span></button>`,
   ];
   for (const [key, c] of Object.entries(CATEGORIAS)) {
     opciones.push(
-      `<button class="filter-option" role="menuitemradio" aria-checked="false" data-cat="${key}" style="--cat:${c.color}"><span class="dot"></span>${c.nombre}</button>`
+      `<button class="filter-option" role="menuitemcheckbox" aria-checked="false" data-cat="${key}" style="--cat:${c.color}"><span class="dot"></span>${c.nombre}<span class="check" aria-hidden="true">✓</span></button>`
     );
   }
   cont.innerHTML = opciones.join("");
+  // Se pueden marcar varios tipos, así que el menú NO se cierra al elegir:
+  // se cierra con clic afuera, con Esc o con el propio botón.
   cont.addEventListener("click", (e) => {
     const btn = e.target.closest(".filter-option");
     if (!btn) return;
-    seleccionarFiltro(btn.dataset.cat);
-    cerrarMenuFiltro();
-    document.getElementById("filter-toggle").focus();
+    alternarFiltro(btn.dataset.cat);
   });
 }
 
-// Marca la opción activa, actualiza la etiqueta del botón y aplica el filtro.
-function seleccionarFiltro(cat) {
+// Prende o apaga un tipo de junta. «Todos» limpia la selección, y apagar el
+// último tipo marcado también regresa a «Todos».
+function alternarFiltro(cat) {
+  if (cat === "todos") filtrosActivos.clear();
+  else if (filtrosActivos.has(cat)) filtrosActivos.delete(cat);
+  else filtrosActivos.add(cat);
+  sincronizarMenuFiltro();
+  aplicarFiltro();
+}
+
+// Refleja la selección en las casillas del menú y en la etiqueta del botón.
+function sincronizarMenuFiltro() {
   document.querySelectorAll(".filter-option").forEach((b) => {
-    const on = b.dataset.cat === cat;
+    const cat = b.dataset.cat;
+    const on = cat === "todos" ? filtrosActivos.size === 0 : filtrosActivos.has(cat);
     b.classList.toggle("is-active", on);
     b.setAttribute("aria-checked", on ? "true" : "false");
   });
   const toggle = document.getElementById("filter-toggle");
   const label = document.getElementById("filter-toggle-label");
-  if (cat === "todos") {
+  const n = filtrosActivos.size;
+  if (n === 0) {
     label.textContent = "Tipo de junta";
     toggle.classList.remove("has-filter");
     toggle.style.removeProperty("--cat");
-  } else {
-    label.textContent = CATEGORIAS[cat].nombre;
-    toggle.classList.add("has-filter");
-    toggle.style.setProperty("--cat", CATEGORIAS[cat].color);
+    return;
   }
-  aplicarFiltro(cat);
+  // Con un solo tipo el botón toma su nombre y su color; con varios, la cuenta
+  // y el color de marca (ningún tipo manda sobre los otros).
+  const [primero] = filtrosActivos;
+  label.textContent = n === 1 ? CATEGORIAS[primero].nombre : `${n} tipos`;
+  toggle.classList.add("has-filter");
+  toggle.style.setProperty("--cat", n === 1 ? CATEGORIAS[primero].color : "var(--verde)");
 }
 
 /* ===== Menú desplegable de filtros ===== */
@@ -498,13 +519,11 @@ function eventoHTML(e) {
 }
 
 /* ============ FILTRO (compartido entre Lista y Mes) ============ */
-function aplicarFiltro(cat) {
-  filtroActivo = cat;
+function aplicarFiltro() {
   // Filtrado de la Lista (solo dentro de #agenda: no tocar tarjetas del modal).
   const eventos = document.querySelectorAll("#agenda .event");
   eventos.forEach((ev) => {
-    const match = cat === "todos" || ev.dataset.cat === cat;
-    ev.classList.toggle("filtered-out", !match);
+    ev.classList.toggle("filtered-out", !pasaFiltro(ev.dataset.cat));
   });
   // Ocultar meses que quedaron vacíos
   document.querySelectorAll(".month").forEach((m) => {
@@ -833,7 +852,7 @@ function setVista(v) {
     document.getElementById("empty-state").hidden = true; // el aviso de la Lista no aplica aquí
     renderMes();
   } else {
-    aplicarFiltro(filtroActivo); // recomputa el estado visible de la Lista
+    aplicarFiltro(); // recomputa el estado visible de la Lista
   }
 }
 
@@ -848,7 +867,7 @@ function renderMes() {
   document.getElementById("mes-next").disabled = mesActual === ORDEN_MESES.length - 1;
 
   // Eventos con fecha que pasan el filtro (los "sin fecha" no entran a la grilla).
-  const visibles = EVENTOS.filter((e) => filtroActivo === "todos" || e.cat === filtroActivo);
+  const visibles = EVENTOS.filter((e) => pasaFiltro(e.cat));
 
   // Grilla lunes→domingo, 6 filas fijas (42 celdas) para altura consistente.
   const primero = new Date(ANIO, jsMonth, 1);
@@ -901,7 +920,7 @@ function renderMes() {
 function abrirDia(fecha) {
   const dia = soloDia(fecha);
   const delDia = EVENTOS.filter((e) => {
-    if (filtroActivo !== "todos" && e.cat !== filtroActivo) return false;
+    if (!pasaFiltro(e.cat)) return false;
     const r = rangoEvento(e);
     return r && dia >= soloDia(r.inicio) && dia <= soloDia(r.fin);
   });
