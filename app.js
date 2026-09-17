@@ -165,7 +165,6 @@ const EVENTOS = [
 
   // ===== NOVIEMBRE =====
   { mes: "Noviembre", dia: 2, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Noviembre", dia: 2, dow: "Lun", cat: "economica", titulo: "Entrega de boletos de la Mega Rifa" },
   { mes: "Noviembre", dia: 9, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 14, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
   { mes: "Noviembre", dia: 15, dow: "Dom", cat: "misa", titulo: "Misa mensual y convivencia con KIDS", desc: "(O apostolado con KIDS, por definir.)", hora: "5:00 p.m." },
