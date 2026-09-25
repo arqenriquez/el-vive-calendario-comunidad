@@ -150,7 +150,7 @@ const EVENTOS = [
   { mes: "Septiembre", dia: 15, dow: "Mar", cat: "especial", titulo: "Kermés de la Parroquia La Resurrección" },
   { mes: "Septiembre", dia: 21, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 23, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
-  { mes: "Septiembre", dia: 27, dow: "Dom", cat: "misa", titulo: "Misa Mensual - Misa de niños", desc: "Domingo", hora: "5:00 p.m." },
+  { mes: "Septiembre", dia: 27, dow: "Dom", cat: "misa", titulo: "Misa Mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Septiembre", dia: 28, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
   // ===== OCTUBRE =====
