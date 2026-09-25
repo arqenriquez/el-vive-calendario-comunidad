@@ -82,6 +82,12 @@ function esVacaciones(e) {
   return /^vacaciones/i.test((e.titulo || "").trim());
 }
 
+// ¿Es el "Retiro de Compromiso"? Es el evento más especial del año: sigue siendo
+// categoría "especial", pero se pinta en azul claro para destacarlo.
+function esCompromiso(e) {
+  return /retiro de compromiso/i.test(e.titulo || "");
+}
+
 /* ===== Fechas para la vista Mes ===== */
 // Fecha sin horas (para comparar solo por día).
 function soloDia(d) {
@@ -174,6 +180,7 @@ const EVENTOS = [
   { mes: "Noviembre", dia: 30, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
 
   // ===== DICIEMBRE =====
+  { mes: "Diciembre", dia: "4 – 6", dow: "Vie a Dom", cat: "especial", titulo: "Retiro de Compromiso INI #1", rango: true },
   { mes: "Diciembre", dia: 7, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Diciembre", dia: 9, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
   { mes: "Diciembre", dia: 11, dow: "Vie", cat: "especial", titulo: "Peregrinación" },
@@ -496,7 +503,7 @@ function eventoHTML(e) {
     ? `<button class="event-comment" type="button" data-comentar="${clave}">💬 Enviar comentarios</button>`
     : "";
 
-  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${esVacaciones(e) ? "is-vacaciones" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${c.color}">
+  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${esVacaciones(e) ? "is-vacaciones" : ""} ${esCompromiso(e) ? "is-compromiso" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${esCompromiso(e) ? "var(--c-compromiso)" : c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
       ${fechaBox}
@@ -895,7 +902,7 @@ function renderMes() {
       const fin = mismaFecha(d, soloDia(r.fin));
       // Barra continua en rangos: solo se redondea en el 1.º y último día.
       const extremos = `${ini ? "is-start" : ""} ${fin ? "is-end" : ""}`.trim();
-      const vac = esVacaciones(e) ? " is-vacaciones" : "";
+      const vac = (esVacaciones(e) ? " is-vacaciones" : "") + (esCompromiso(e) ? " is-compromiso" : "");
       const texto = e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
       return `<span class="mes-bar ${extremos}${vac}" style="--cat:${CATEGORIAS[e.cat].color}" title="${e.titulo}">${texto}</span>`;
     }).join("");

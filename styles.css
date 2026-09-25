@@ -30,6 +30,11 @@
   --c-especial-ink:  #8f4423;   /* texto terracota oscuro (legible sobre naranja claro) */
   --c-especial-tint: #f7e7db;   /* fondo peach suave (tarjeta de vacaciones en la Lista) */
 
+  /* Retiro de Compromiso: el evento más especial del año, en azul claro */
+  --c-compromiso:      #4a90c9;  /* borde, número y etiqueta */
+  --c-compromiso-ink:  #1f4e79;  /* texto azul oscuro (legible sobre azul claro) */
+  --c-compromiso-tint: #e3f0fb;  /* fondo azul muy claro */
+
   /* Acento para el día de HOY en la vista Mes (más llamativo que el verde de marca) */
   --hoy:      #e4572e;
   --hoy-tint: #fdece5;
@@ -371,6 +376,8 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 .event.is-range { border-left-style: dashed; background: var(--verde-tint); }
 /* Vacaciones: se distingue de los retiros con un fondo naranja muy suave. */
 .event.is-range.is-vacaciones { background: var(--c-especial-tint); }
+/* Retiro de Compromiso: fondo azul muy claro. */
+.event.is-compromiso { background: var(--c-compromiso-tint); }
 
 /* Evento ya realizado: tono gris claro + check verde de "ya fue" */
 .event.past {
@@ -779,6 +786,11 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 .mes-bar.is-vacaciones {
   background: color-mix(in srgb, var(--c-especial) 42%, transparent);
   color: var(--c-especial-ink);
+}
+/* Retiro de Compromiso: barra azul claro con texto azul oscuro. */
+.mes-bar.is-compromiso {
+  background: color-mix(in srgb, var(--c-compromiso) 35%, transparent);
+  color: var(--c-compromiso-ink);
 }
 .mes-more { font-size: 10px; font-weight: 600; color: var(--ink-soft); padding: 0 3px; }
 

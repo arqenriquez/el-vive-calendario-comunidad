@@ -376,6 +376,14 @@
   },
   {
     "mes": "Diciembre",
+    "dia": "4 – 6",
+    "dow": "Vie a Dom",
+    "cat": "especial",
+    "titulo": "Retiro de Compromiso INI #1",
+    "rango": true
+  },
+  {
+    "mes": "Diciembre",
     "dia": 7,
     "dow": "Lun",
     "cat": "comunidad",
