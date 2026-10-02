@@ -38,7 +38,7 @@ DOW_ES = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]  # date.weekday(): 
 
 COLUMNS = ["Mes", "Día", "Día semana", "Categoría", "Título",
            "Hora", "Descripción", "Rango (varios días)", "Ubicación (Google Maps)",
-           "Reprogramado"]
+           "Reprogramado", "Cancelado (no hubo)"]
 
 
 def dow_es(mes, dia):
@@ -98,6 +98,7 @@ def main():
             "Sí" if rango else "",
             e.get("mapa", ""),
             "Sí" if e.get("reprogramado") else "",
+            "Sí" if e.get("cancelado") else "",
         ]
         for c, v in enumerate(valores, start=1):
             cell = ws.cell(row=r, column=c, value=v)
@@ -107,7 +108,7 @@ def main():
     nfilas = len(eventos) + 1
 
     # --- Anchos de columna ---
-    anchos = [13, 9, 11, 26, 48, 12, 50, 16, 38, 15]
+    anchos = [13, 9, 11, 26, 48, 12, 50, 16, 38, 15, 18]
     for i, w in enumerate(anchos, start=1):
         ws.column_dimensions[get_column_letter(i)].width = w
 

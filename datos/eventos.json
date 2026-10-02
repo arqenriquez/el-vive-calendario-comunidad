@@ -244,30 +244,33 @@
     "dow": "Lun",
     "cat": "matrimonios",
     "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
-    "hora": "8:00 p.m."
+    "hora": "8:00 p.m.",
+    "desc": "No hubo junta por el clima. Se recorrió al lunes 5 de octubre.",
+    "cancelado": true
+  },
+  {
+    "mes": "Octubre",
+    "dia": 2,
+    "dow": "Vie",
+    "cat": "especial",
+    "titulo": "Hora Santa en Ures"
   },
   {
     "mes": "Octubre",
     "dia": 5,
     "dow": "Lun",
-    "cat": "comunidad",
-    "titulo": "Junta de Comunidad / INI",
-    "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Octubre",
-    "dia": 10,
-    "dow": "Sáb",
-    "cat": "especial",
-    "titulo": "Primera limpieza de rancho con Comunidad de Iniciación 1",
-    "desc": "Incluye un momento de convivencia, oración y encuentro en el rancho."
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "hora": "8:00 p.m.",
+    "desc": "Se recorrió del lunes 28 de septiembre (no hubo junta por el clima).",
+    "reprogramado": true
   },
   {
     "mes": "Octubre",
     "dia": 12,
     "dow": "Lun",
     "cat": "comunidad",
-    "titulo": "Junta de Comunidad / INI",
+    "titulo": "Junta de Comunidad e Iniciación (Juntos)",
     "hora": "8:00 p.m."
   },
   {
@@ -282,16 +285,9 @@
     "mes": "Octubre",
     "dia": 19,
     "dow": "Lun",
-    "cat": "comunidad",
-    "titulo": "Junta de Comunidad / INI",
+    "cat": "especial",
+    "titulo": "Cine ÉL VIVE - The Chosen Cap.1 Temp.6",
     "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Octubre",
-    "dia": 24,
-    "dow": "Sáb",
-    "cat": "economica",
-    "titulo": "Actividad económica grande (Conferencias)"
   },
   {
     "mes": "Octubre",
@@ -358,6 +354,13 @@
     "cat": "matrimonios",
     "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
     "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 25,
+    "dow": "Mié",
+    "cat": "economica",
+    "titulo": "Conferencias ÉL VIVE"
   },
   {
     "mes": "Noviembre",

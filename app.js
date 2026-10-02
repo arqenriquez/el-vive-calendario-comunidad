@@ -11,6 +11,7 @@
    - cat:    comunidad | apostolado | misa | matrimonios | economica | especial
    - hora:   opcional, ej. "5:00 p.m."
    - rango:  true si abarca varios días (vacaciones)
+   - cancelado: true si no se realizó (ej. "no hubo junta"): se pinta en gris
    =================================================== */
 
 const CATEGORIAS = {
@@ -157,15 +158,14 @@ const EVENTOS = [
   { mes: "Septiembre", dia: 21, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Septiembre", dia: 23, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
   { mes: "Septiembre", dia: 27, dow: "Dom", cat: "misa", titulo: "Misa Mensual", desc: "Domingo", hora: "5:00 p.m." },
-  { mes: "Septiembre", dia: 28, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
+  { mes: "Septiembre", dia: 28, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", desc: "No hubo junta por el clima. Se recorrió al lunes 5 de octubre.", hora: "8:00 p.m.", cancelado: true },
 
   // ===== OCTUBRE =====
-  { mes: "Octubre", dia: 5, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Octubre", dia: 10, dow: "Sáb", cat: "especial", titulo: "Primera limpieza de rancho con Comunidad de Iniciación 1", desc: "Incluye un momento de convivencia, oración y encuentro en el rancho." },
-  { mes: "Octubre", dia: 12, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
+  { mes: "Octubre", dia: 2, dow: "Vie", cat: "especial", titulo: "Hora Santa en Ures" },
+  { mes: "Octubre", dia: 5, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", desc: "Se recorrió del lunes 28 de septiembre (no hubo junta por el clima).", hora: "8:00 p.m.", reprogramado: true },
+  { mes: "Octubre", dia: 12, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad e Iniciación (Juntos)", hora: "8:00 p.m." },
   { mes: "Octubre", dia: 14, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
-  { mes: "Octubre", dia: 19, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
-  { mes: "Octubre", dia: 24, dow: "Sáb", cat: "economica", titulo: "Actividad económica grande (Conferencias)" },
+  { mes: "Octubre", dia: 19, dow: "Lun", cat: "especial", titulo: "Cine ÉL VIVE - The Chosen Cap.1 Temp.6", hora: "8:00 p.m." },
   { mes: "Octubre", dia: 25, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Octubre", dia: 26, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
 
@@ -176,6 +176,7 @@ const EVENTOS = [
   { mes: "Noviembre", dia: 15, dow: "Dom", cat: "misa", titulo: "Misa mensual y convivencia con KIDS", desc: "(O apostolado con KIDS, por definir.)", hora: "5:00 p.m." },
   { mes: "Noviembre", dia: 16, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 23, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
+  { mes: "Noviembre", dia: 25, dow: "Mié", cat: "economica", titulo: "Conferencias ÉL VIVE" },
   { mes: "Noviembre", dia: 28, dow: "Sáb", cat: "especial", titulo: "Limpieza de rancho" },
   { mes: "Noviembre", dia: 30, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
 
@@ -460,8 +461,10 @@ function eventoHTML(e) {
   const c = CATEGORIAS[e.cat];
   const hora = e.hora ? `<span class="event-time">🕐 ${e.hora}</span>` : "";
   const desc = e.desc ? `<p class="event-desc">${e.desc}</p>` : "";
-  const seRealizo = yaFue(e);
-  const pasado = seRealizo ? "past" : "";
+  // Cancelado ("no hubo junta"): se ve en gris, sin check, sin comentarios ni fotos.
+  const cancelado = !!e.cancelado;
+  const seRealizo = yaFue(e) && !cancelado;
+  const pasado = seRealizo ? "past" : cancelado ? "past is-cancelado" : "";
   const doneCheck = seRealizo
     ? `<span class="event-done" title="Ya se realizó" aria-label="Ya se realizó">✓</span>`
     : "";
@@ -492,6 +495,9 @@ function eventoHTML(e) {
   const reprog = e.reprogramado
     ? `<p class="event-reprog">🔁 Fecha actualizada</p>`
     : "";
+  const noHubo = cancelado
+    ? `<p class="event-cancelado">✖ No hubo junta</p>`
+    : "";
 
   // Botón "Ver info" (imagen informativa, ej. flyer de un evento próximo).
   const infoBtn = INFO[clave]
@@ -503,13 +509,14 @@ function eventoHTML(e) {
     ? `<button class="event-comment" type="button" data-comentar="${clave}">💬 Enviar comentarios</button>`
     : "";
 
-  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${esVacaciones(e) ? "is-vacaciones" : ""} ${esCompromiso(e) ? "is-compromiso" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${esCompromiso(e) ? "var(--c-compromiso)" : c.color}">
+  return `<article class="event reveal ${e.rango ? "is-range" : ""} ${esVacaciones(e) ? "is-vacaciones" : ""} ${esCompromiso(e) ? "is-compromiso" : ""} ${pasado} ${galClass}" data-cat="${e.cat}" ${galAttrs} style="--cat:${cancelado ? "var(--c-cancelado)" : esCompromiso(e) ? "var(--c-compromiso)" : c.color}">
     ${doneCheck}
     <div class="event-date${sinFecha ? " event-date--tbd" : ""}">
       ${fechaBox}
     </div>
     <div class="event-body">
       <h3 class="event-title">${e.titulo}</h3>
+      ${noHubo}
       ${reprog}
       ${desc}
       <div class="event-meta">
@@ -902,9 +909,11 @@ function renderMes() {
       const fin = mismaFecha(d, soloDia(r.fin));
       // Barra continua en rangos: solo se redondea en el 1.º y último día.
       const extremos = `${ini ? "is-start" : ""} ${fin ? "is-end" : ""}`.trim();
-      const vac = (esVacaciones(e) ? " is-vacaciones" : "") + (esCompromiso(e) ? " is-compromiso" : "");
-      const texto = e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
-      return `<span class="mes-bar ${extremos}${vac}" style="--cat:${CATEGORIAS[e.cat].color}" title="${e.titulo}">${texto}</span>`;
+      const vac = (esVacaciones(e) ? " is-vacaciones" : "") + (esCompromiso(e) ? " is-compromiso" : "")
+        + (e.cancelado ? " is-cancelado" : "");
+      const texto = e.cancelado ? "No hubo junta" : e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
+      const color = e.cancelado ? "var(--c-cancelado)" : CATEGORIAS[e.cat].color;
+      return `<span class="mes-bar ${extremos}${vac}" style="--cat:${color}" title="${e.titulo}">${texto}</span>`;
     }).join("");
     const extra = delDia.length - MAX_EVENTOS_DIA;
     const mas = extra > 0 ? `<span class="mes-more">+${extra} más</span>` : "";
