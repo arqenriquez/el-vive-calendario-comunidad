@@ -282,6 +282,14 @@
   },
   {
     "mes": "Octubre",
+    "dia": "24 – 25",
+    "dow": "Sáb a Dom",
+    "cat": "especial",
+    "titulo": "Lunada en el Rancho",
+    "rango": true
+  },
+  {
+    "mes": "Octubre",
     "dia": 25,
     "dow": "Dom",
     "cat": "misa",
