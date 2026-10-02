@@ -262,7 +262,6 @@
     "cat": "matrimonios",
     "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
     "hora": "8:00 p.m.",
-    "desc": "Se recorrió del lunes 28 de septiembre (no hubo junta por el clima).",
     "reprogramado": true
   },
   {
@@ -272,14 +271,6 @@
     "cat": "comunidad",
     "titulo": "Junta de Comunidad e Iniciación (Juntos)",
     "hora": "8:00 p.m."
-  },
-  {
-    "mes": "Octubre",
-    "dia": 14,
-    "dow": "Mié",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual",
-    "desc": "Lugar por definir"
   },
   {
     "mes": "Octubre",

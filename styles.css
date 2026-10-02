@@ -391,8 +391,6 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 1.1rem; }
 .event.past .event-time { color: var(--ink-soft); background: #e7e2df; }
 .event.past:hover { transform: none; box-shadow: var(--shadow-sm); }
 
-/* Evento cancelado: además del gris de .past, el título va tachado. */
-.event.is-cancelado .event-title { text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .event-cancelado {
   display: inline-flex; align-items: center; gap: .3rem;
   margin-top: .25rem;

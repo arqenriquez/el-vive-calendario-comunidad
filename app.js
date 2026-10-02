@@ -162,9 +162,8 @@ const EVENTOS = [
 
   // ===== OCTUBRE =====
   { mes: "Octubre", dia: 2, dow: "Vie", cat: "especial", titulo: "Hora Santa en Ures" },
-  { mes: "Octubre", dia: 5, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", desc: "Se recorrió del lunes 28 de septiembre (no hubo junta por el clima).", hora: "8:00 p.m.", reprogramado: true },
+  { mes: "Octubre", dia: 5, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m.", reprogramado: true },
   { mes: "Octubre", dia: 12, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad e Iniciación (Juntos)", hora: "8:00 p.m." },
-  { mes: "Octubre", dia: 14, dow: "Mié", cat: "apostolado", titulo: "Apostolado mensual", desc: "Lugar por definir" },
   { mes: "Octubre", dia: 19, dow: "Lun", cat: "especial", titulo: "Cine ÉL VIVE - The Chosen Cap.1 Temp.6", hora: "8:00 p.m." },
   { mes: "Octubre", dia: 25, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Octubre", dia: 26, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
