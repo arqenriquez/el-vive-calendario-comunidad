@@ -168,6 +168,7 @@ const EVENTOS = [
   { mes: "Octubre", dia: "24 – 25", dow: "Sáb a Dom", cat: "especial", titulo: "Lunada en el Rancho", rango: true },
   { mes: "Octubre", dia: 25, dow: "Dom", cat: "misa", titulo: "Misa mensual", desc: "Domingo", hora: "5:00 p.m." },
   { mes: "Octubre", dia: 26, dow: "Lun", cat: "matrimonios", titulo: "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación", hora: "8:00 p.m." },
+  { mes: "Octubre", dia: 31, dow: "Sáb", cat: "apostolado", titulo: "Apostolado mensual", desc: "Casa Esperanza para niños", hora: "9:00 a.m." },
 
   // ===== NOVIEMBRE =====
   { mes: "Noviembre", dia: 2, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },

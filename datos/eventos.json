@@ -306,6 +306,15 @@
     "hora": "8:00 p.m."
   },
   {
+    "mes": "Octubre",
+    "dia": 31,
+    "dow": "Sáb",
+    "cat": "apostolado",
+    "titulo": "Apostolado mensual",
+    "hora": "9:00 a.m.",
+    "desc": "Casa Esperanza para niños"
+  },
+  {
     "mes": "Noviembre",
     "dia": 2,
     "dow": "Lun",
