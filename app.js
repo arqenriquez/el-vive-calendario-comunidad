@@ -914,7 +914,9 @@ function renderMes() {
       const extremos = `${ini ? "is-start" : ""} ${fin ? "is-end" : ""}`.trim();
       const vac = (esVacaciones(e) ? " is-vacaciones" : "") + (esCompromiso(e) ? " is-compromiso" : "")
         + (e.cancelado ? " is-cancelado" : "");
-      const texto = e.cancelado ? "No hubo junta" : e.rango ? e.titulo : CATEGORIAS[e.cat].nombre;
+      // Especiales y Económicas muestran el nombre de la actividad (la categoría no dice nada).
+      const usaTitulo = e.rango || e.cat === "especial" || e.cat === "economica";
+      const texto = e.cancelado ? "No hubo junta" : usaTitulo ? e.titulo : CATEGORIAS[e.cat].nombre;
       const color = e.cancelado ? "var(--c-cancelado)" : CATEGORIAS[e.cat].color;
       return `<span class="mes-bar ${extremos}${vac}" style="--cat:${color}" title="${e.titulo}">${texto}</span>`;
     }).join("");
