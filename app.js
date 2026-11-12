@@ -176,7 +176,6 @@ const EVENTOS = [
   { mes: "Noviembre", dia: 16, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 18, dow: "Mié", cat: "especial", titulo: "Misa de despedida del Padre Gabriel", hora: "7:00 p.m." },
   { mes: "Noviembre", dia: 21, dow: "Sáb", cat: "especial", titulo: "Limpieza de rancho" },
-  { mes: "Noviembre", dia: 22, dow: "Dom", cat: "apostolado", titulo: "Apostolado de ÉL VIVE KIDS" },
   { mes: "Noviembre", dia: 23, dow: "Lun", cat: "comunidad", titulo: "Junta de Comunidad / INI", hora: "8:00 p.m." },
   { mes: "Noviembre", dia: 25, dow: "Mié", cat: "economica", titulo: "Conferencias ÉL VIVE" },
   { mes: "Noviembre", dia: 28, dow: "Sáb", cat: "especial", titulo: "Limpieza de rancho" },
