@@ -348,6 +348,13 @@
   },
   {
     "mes": "Noviembre",
+    "dia": 21,
+    "dow": "Sáb",
+    "cat": "especial",
+    "titulo": "Limpieza de rancho"
+  },
+  {
+    "mes": "Noviembre",
     "dia": 22,
     "dow": "Dom",
     "cat": "apostolado",
