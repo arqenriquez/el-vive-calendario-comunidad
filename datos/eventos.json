@@ -332,23 +332,6 @@
   },
   {
     "mes": "Noviembre",
-    "dia": 14,
-    "dow": "Sáb",
-    "cat": "apostolado",
-    "titulo": "Apostolado mensual",
-    "desc": "Lugar por definir"
-  },
-  {
-    "mes": "Noviembre",
-    "dia": 15,
-    "dow": "Dom",
-    "cat": "misa",
-    "titulo": "Misa mensual y convivencia con KIDS",
-    "hora": "5:00 p.m.",
-    "desc": "(O apostolado con KIDS, por definir.)"
-  },
-  {
-    "mes": "Noviembre",
     "dia": 16,
     "dow": "Lun",
     "cat": "comunidad",
@@ -357,10 +340,25 @@
   },
   {
     "mes": "Noviembre",
+    "dia": 18,
+    "dow": "Mié",
+    "cat": "especial",
+    "titulo": "Misa de despedida del Padre Gabriel",
+    "hora": "7:00 p.m."
+  },
+  {
+    "mes": "Noviembre",
+    "dia": 22,
+    "dow": "Dom",
+    "cat": "apostolado",
+    "titulo": "Apostolado de ÉL VIVE KIDS"
+  },
+  {
+    "mes": "Noviembre",
     "dia": 23,
     "dow": "Lun",
-    "cat": "matrimonios",
-    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
+    "cat": "comunidad",
+    "titulo": "Junta de Comunidad / INI",
     "hora": "8:00 p.m."
   },
   {
@@ -381,8 +379,8 @@
     "mes": "Noviembre",
     "dia": 30,
     "dow": "Lun",
-    "cat": "comunidad",
-    "titulo": "Junta de Comunidad / INI",
+    "cat": "matrimonios",
+    "titulo": "Matrimonios ÉL VIVE, KIDS y Juntas de Comunidad e Iniciación",
     "hora": "8:00 p.m."
   },
   {
@@ -400,6 +398,14 @@
     "cat": "comunidad",
     "titulo": "Junta de Comunidad / INI",
     "hora": "8:00 p.m."
+  },
+  {
+    "mes": "Diciembre",
+    "dia": 8,
+    "dow": "Mar",
+    "cat": "especial",
+    "titulo": "Misa de toma de parroquia del Padre Gabriel",
+    "desc": "En Carbó."
   },
   {
     "mes": "Diciembre",
@@ -421,7 +427,7 @@
     "dia": 12,
     "dow": "Sáb",
     "cat": "especial",
-    "titulo": "Día de la Virgen, misa y Posada KIDS"
+    "titulo": "Día de la Virgen y misa"
   },
   {
     "mes": "Diciembre",
